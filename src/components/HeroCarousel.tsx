@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from 'react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { Card, CardContent } from '@/components/ui/card';
 
 const HeroCarousel = () => {
   const [api, setApi] = useState<any>();
@@ -35,7 +34,7 @@ const HeroCarousel = () => {
 
     const interval = setInterval(() => {
       api.scrollNext();
-    }, 4000);
+    }, 5000);
 
     api.on('select', () => {
       setCurrent(api.selectedScrollSnap());
@@ -48,7 +47,7 @@ const HeroCarousel = () => {
   }, [api]);
 
   return (
-    <div className="relative w-full h-full">
+    <div className="absolute inset-0 w-full h-full">
       <Carousel
         setApi={setApi}
         className="w-full h-full"
@@ -60,28 +59,28 @@ const HeroCarousel = () => {
         <CarouselContent className="h-full">
           {heroImages.map((image, index) => (
             <CarouselItem key={index} className="h-full">
-              <Card className="h-full border-0 shadow-none">
-                <CardContent className="relative h-full p-0 overflow-hidden rounded-2xl">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10" />
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover"
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
-                  <div className="absolute bottom-6 left-6 right-6 z-20">
-                    <h3 className="text-white font-bold text-lg md:text-xl mb-2">
-                      {image.title}
-                    </h3>
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="relative h-full w-full overflow-hidden">
+                {/* Background Image with 80% Opacity */}
+                <div 
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80"
+                  style={{ backgroundImage: `url(${image.src})` }}
+                />
+                {/* Dark overlay for better text readability */}
+                <div className="absolute inset-0 bg-black/30" />
+                
+                {/* Image claim positioned at bottom */}
+                <div className="absolute bottom-8 left-8 right-8 z-10">
+                  <h3 className="text-white font-bold text-lg md:text-xl drop-shadow-lg">
+                    {image.title}
+                  </h3>
+                </div>
+              </div>
             </CarouselItem>
           ))}
         </CarouselContent>
         
-        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white border-0 shadow-lg" />
-        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white border-0 shadow-lg" />
+        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border-0 text-white z-20" />
+        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border-0 text-white z-20" />
       </Carousel>
       
       {/* Carousel indicators */}

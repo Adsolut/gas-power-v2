@@ -33,7 +33,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 to-white">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-primary-200">
+      <header className="bg-white shadow-sm border-b border-primary-200 relative z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-3">
@@ -61,61 +61,57 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
-            {/* Left Column - Text Content */}
-            <div className="text-center lg:text-left">
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 animate-fade-in">
-                Confronta le <span className="text-gaspower-green">Migliori Offerte</span>
-                <br />
-                Luce e Gas
-              </h1>
-              <p className="text-xl text-gray-600 mb-8 animate-fade-in">
-                Trova la tariffa più conveniente per la tua casa. Confronta gratuitamente 
-                le offerte dei principali fornitori e inizia subito a risparmiare.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center animate-scale-in">
-                <Button 
-                  onClick={handleCallNow} 
-                  className="bg-gaspower-blue hover:bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200"
-                >
-                  <Phone className="h-5 w-5 mr-2" />
-                  Chiama Ora: 02 40137880
-                </Button>
-                <p className="text-sm text-gray-500">Consulenza gratuita dal lunedì al venerdì 8-21, sabato 9-13</p>
-              </div>
+      {/* Hero Section with Background Carousel */}
+      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Background Carousel */}
+        <HeroCarousel />
+        
+        {/* Main Content Over Background */}
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          <div className="bg-black/20 backdrop-blur-sm rounded-3xl p-8 md:p-12">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-in drop-shadow-lg">
+              Confronta le <span className="text-gaspower-green">Migliori Offerte</span>
+              <br />
+              Luce e Gas
+            </h1>
+            <p className="text-xl text-white/90 mb-8 animate-fade-in drop-shadow-md">
+              Trova la tariffa più conveniente per la tua casa. Confronta gratuitamente 
+              le offerte dei principali fornitori e inizia subito a risparmiare.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in mb-8">
+              <Button 
+                onClick={handleCallNow} 
+                className="bg-gaspower-blue hover:bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200"
+              >
+                <Phone className="h-5 w-5 mr-2" />
+                Chiama Ora: 02 40137880
+              </Button>
+              <p className="text-sm text-white/80 drop-shadow-md">Consulenza gratuita dal lunedì al venerdì 8-21, sabato 9-13</p>
             </div>
 
-            {/* Right Column - Hero Carousel */}
-            <div className="h-96 lg:h-[500px] animate-fade-in">
-              <HeroCarousel />
-            </div>
-          </div>
-
-          {/* Trust Indicators */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <div className="text-center animate-fade-in">
-              <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-md">
-                <Users className="h-8 w-8 text-gaspower-green" />
+            {/* Trust Indicators */}
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="text-center animate-fade-in">
+                <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="font-semibold text-lg mb-2 text-white drop-shadow-md">Oltre 200.000 Clienti</h3>
+                <p className="text-white/80 drop-shadow-md">Si sono fidati di noi dal 2015</p>
               </div>
-              <h3 className="font-semibold text-lg mb-2">Oltre 200.000 Clienti</h3>
-              <p className="text-gray-600">Si sono fidati di noi dal 2015</p>
-            </div>
-            <div className="text-center animate-fade-in">
-              <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-md">
-                <Shield className="h-8 w-8 text-gaspower-green" />
+              <div className="text-center animate-fade-in">
+                <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <Shield className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="font-semibold text-lg mb-2 text-white drop-shadow-md">100% Gratuito</h3>
+                <p className="text-white/80 drop-shadow-md">Confronto e consulenza senza costi</p>
               </div>
-              <h3 className="font-semibold text-lg mb-2">100% Gratuito</h3>
-              <p className="text-gray-600">Confronto e consulenza senza costi</p>
-            </div>
-            <div className="text-center animate-fade-in">
-              <div className="bg-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-md">
-                <Clock className="h-8 w-8 text-gaspower-green" />
+              <div className="text-center animate-fade-in">
+                <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <Clock className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="font-semibold text-lg mb-2 text-white drop-shadow-md">Risparmio Immediato</h3>
+                <p className="text-white/80 drop-shadow-md">Attivazione in pochi minuti</p>
               </div>
-              <h3 className="font-semibold text-lg mb-2">Risparmio Immediato</h3>
-              <p className="text-gray-600">Attivazione in pochi minuti</p>
             </div>
           </div>
         </div>
