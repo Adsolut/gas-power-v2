@@ -68,9 +68,9 @@ const HeroCarousel = () => {
                 {/* Dark overlay for better text readability */}
                 <div className="absolute inset-0 bg-black/30" />
                 
-                {/* Image claim positioned at bottom */}
-                <div className="absolute bottom-8 left-8 right-8 z-10">
-                  <h3 className="text-white font-bold text-lg md:text-xl drop-shadow-lg">
+                {/* Image claim positioned at bottom - mobile optimized */}
+                <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-4 sm:left-6 md:left-8 right-4 sm:right-6 md:right-8 z-10">
+                  <h3 className="text-white font-bold text-sm sm:text-lg md:text-xl drop-shadow-lg text-center sm:text-left">
                     {image.title}
                   </h3>
                 </div>
@@ -79,16 +79,16 @@ const HeroCarousel = () => {
           ))}
         </CarouselContent>
         
-        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border-0 text-white z-20" />
-        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border-0 text-white z-20" />
+        <CarouselPrevious className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border-0 text-white z-20 h-8 w-8 sm:h-10 sm:w-10" />
+        <CarouselNext className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border-0 text-white z-20 h-8 w-8 sm:h-10 sm:w-10" />
       </Carousel>
       
-      {/* Carousel indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
+      {/* Carousel indicators - mobile optimized */}
+      <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
         {heroImages.map((_, index) => (
           <button
             key={index}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+            className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300 ${
               current === index ? 'bg-white scale-125' : 'bg-white/50'
             }`}
             onClick={() => api?.scrollTo(index)}

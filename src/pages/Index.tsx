@@ -19,14 +19,14 @@ const Index = () => {
   const [hotWaterType, setHotWaterType] = useState('');
   const [cookingType, setCookingType] = useState('');
 
+  const phoneNumber = '0240137880';
+  
   const handleCallNow = () => {
-    window.location.href = 'tel:0240137880';
+    window.location.href = `tel:${phoneNumber}`;
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically process the form data
-    // For now, we'll just redirect to call
     handleCallNow();
   };
 
@@ -34,83 +34,87 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-primary-50 to-white">
       {/* Header */}
       <header className="bg-white shadow-sm border-b border-primary-200 relative z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2 sm:space-x-3">
               <img 
                 src="/img/logos/gas-power-logo.svg" 
                 alt="Gas & Power Logo" 
-                className="h-12 w-auto"
+                className="h-8 sm:h-12 w-auto"
                 onError={(e) => {
-                  // Fallback to icon if logo doesn't exist
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
                   target.nextElementSibling?.classList.remove('hidden');
                 }}
               />
-              <div className="w-10 h-10 bg-gradient-to-br from-gaspower-green to-gaspower-darkgreen rounded-lg flex items-center justify-center hidden">
-                <Zap className="h-6 w-6 text-white" />
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-gaspower-green to-gaspower-darkgreen rounded-lg flex items-center justify-center hidden">
+                <Zap className="h-4 w-4 sm:h-6 sm:w-6 text-white" />
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">Gas & Power</h1>
+              <h1 className="text-lg sm:text-2xl font-bold text-gray-900">Gas & Power</h1>
             </div>
-            <Button onClick={handleCallNow} className="bg-gaspower-blue hover:bg-blue-600 text-white font-semibold px-6 py-2">
-              <Phone className="h-4 w-4 mr-2" />
-              02 40137880
+            <Button 
+              onClick={handleCallNow} 
+              className="bg-gaspower-blue hover:bg-blue-600 text-white font-semibold px-3 sm:px-6 py-2 text-sm sm:text-base"
+            >
+              <Phone className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+              <span className="hidden xs:inline">02 </span>40137880
             </Button>
           </div>
         </div>
       </header>
 
-      {/* Hero Section with Background Carousel */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Hero Section with 16:9 Aspect Ratio */}
+      <section className="relative w-full aspect-video flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background Carousel */}
         <HeroCarousel />
         
         {/* Main Content Over Background */}
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <div className="bg-black/20 backdrop-blur-sm rounded-3xl p-8 md:p-12">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-in drop-shadow-lg">
+        <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
+          <div className="bg-black/20 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4 md:mb-6 animate-fade-in drop-shadow-lg leading-tight">
               Confronta le <span className="text-gaspower-green">Migliori Offerte</span>
               <br />
               Luce e Gas
             </h1>
-            <p className="text-xl text-white/90 mb-8 animate-fade-in drop-shadow-md">
+            <p className="text-sm sm:text-lg md:text-xl text-white/90 mb-4 sm:mb-6 md:mb-8 animate-fade-in drop-shadow-md px-2">
               Trova la tariffa più conveniente per la tua casa. Confronta gratuitamente 
               le offerte dei principali fornitori e inizia subito a risparmiare.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in mb-8">
+            <div className="flex flex-col gap-3 sm:gap-4 justify-center items-center animate-scale-in mb-4 sm:mb-6 md:mb-8">
               <Button 
                 onClick={handleCallNow} 
-                className="bg-gaspower-blue hover:bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200"
+                className="bg-gaspower-blue hover:bg-blue-600 text-white font-bold text-sm sm:text-lg px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 w-full sm:w-auto"
               >
-                <Phone className="h-5 w-5 mr-2" />
+                <Phone className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                 Chiama Ora: 02 40137880
               </Button>
-              <p className="text-sm text-white/80 drop-shadow-md">Consulenza gratuita dal lunedì al venerdì 8-21, sabato 9-13</p>
+              <p className="text-xs sm:text-sm text-white/80 drop-shadow-md text-center px-2">
+                Consulenza gratuita dal lunedì al venerdì 8-21, sabato 9-13
+              </p>
             </div>
 
             {/* Trust Indicators */}
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
               <div className="text-center animate-fade-in">
-                <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8 text-white" />
+                <div className="bg-white/20 backdrop-blur-sm rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-2 sm:mb-4">
+                  <Users className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2 text-white drop-shadow-md">Oltre 200.000 Clienti</h3>
-                <p className="text-white/80 drop-shadow-md">Si sono fidati di noi dal 2015</p>
+                <h3 className="font-semibold text-sm sm:text-lg mb-1 sm:mb-2 text-white drop-shadow-md">Oltre 200.000 Clienti</h3>
+                <p className="text-xs sm:text-base text-white/80 drop-shadow-md">Si sono fidati di noi dal 2015</p>
               </div>
               <div className="text-center animate-fade-in">
-                <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Shield className="h-8 w-8 text-white" />
+                <div className="bg-white/20 backdrop-blur-sm rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-2 sm:mb-4">
+                  <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2 text-white drop-shadow-md">100% Gratuito</h3>
-                <p className="text-white/80 drop-shadow-md">Confronto e consulenza senza costi</p>
+                <h3 className="font-semibold text-sm sm:text-lg mb-1 sm:mb-2 text-white drop-shadow-md">100% Gratuito</h3>
+                <p className="text-xs sm:text-base text-white/80 drop-shadow-md">Confronto e consulenza senza costi</p>
               </div>
               <div className="text-center animate-fade-in">
-                <div className="bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <Clock className="h-8 w-8 text-white" />
+                <div className="bg-white/20 backdrop-blur-sm rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-2 sm:mb-4">
+                  <Clock className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2 text-white drop-shadow-md">Risparmio Immediato</h3>
-                <p className="text-white/80 drop-shadow-md">Attivazione in pochi minuti</p>
+                <h3 className="font-semibold text-sm sm:text-lg mb-1 sm:mb-2 text-white drop-shadow-md">Risparmio Immediato</h3>
+                <p className="text-xs sm:text-base text-white/80 drop-shadow-md">Attivazione in pochi minuti</p>
               </div>
             </div>
           </div>
@@ -118,26 +122,26 @@ const Index = () => {
       </section>
 
       {/* Comparison Form */}
-      <section className="py-16 bg-white">
+      <section className="py-8 sm:py-12 md:py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
               Confronta le Tariffe in 3 Semplici Passi
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base sm:text-lg text-gray-600 px-4">
               Inserisci i dati della tua bolletta per ricevere un confronto personalizzato
             </p>
           </div>
 
           <Card className="shadow-xl border-primary-200">
-            <CardHeader className="bg-gradient-to-r from-gaspower-green to-gaspower-darkgreen text-white">
-              <CardTitle className="text-xl flex items-center">
-                <Calculator className="h-6 w-6 mr-2" />
+            <CardHeader className="bg-gradient-to-r from-gaspower-green to-gaspower-darkgreen text-white p-4 sm:p-6">
+              <CardTitle className="text-lg sm:text-xl flex items-center">
+                <Calculator className="h-5 w-5 sm:h-6 sm:w-6 mr-2" />
                 Comparatore Bollette - Inserisci i tuoi dati
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-8">
-              <form onSubmit={handleFormSubmit} className="space-y-8">
+            <CardContent className="p-4 sm:p-6 md:p-8">
+              <form onSubmit={handleFormSubmit} className="space-y-6 sm:space-y-8">
                 {/* Utility Type Selection */}
                 <div>
                   <Label className="text-lg font-semibold mb-4 block">
@@ -335,19 +339,19 @@ const Index = () => {
                 </div>
 
                 {/* CTA Button */}
-                <div className="bg-gradient-to-r from-gaspower-green to-gaspower-darkgreen p-6 rounded-lg text-center">
-                  <h3 className="text-white font-bold text-xl mb-4">
+                <div className="bg-gradient-to-r from-gaspower-green to-gaspower-darkgreen p-4 sm:p-6 rounded-lg text-center">
+                  <h3 className="text-white font-bold text-lg sm:text-xl mb-3 sm:mb-4">
                     Ricevi Subito le Migliori Offerte!
                   </h3>
-                  <p className="text-white/90 mb-6">
+                  <p className="text-white/90 mb-4 sm:mb-6 text-sm sm:text-base">
                     I nostri esperti ti chiameranno per fornirti un confronto personalizzato e gratuito
                   </p>
                   <Button
                     type="submit"
                     onClick={handleCallNow}
-                    className="bg-white text-gaspower-green hover:bg-gray-100 font-bold text-lg px-8 py-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200"
+                    className="bg-white text-gaspower-green hover:bg-gray-100 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 w-full sm:w-auto"
                   >
-                    <Phone className="h-5 w-5 mr-2" />
+                    <Phone className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
                     Chiama Ora: 02 40137880
                   </Button>
                 </div>
@@ -358,15 +362,15 @@ const Index = () => {
       </section>
 
       {/* Process Steps */}
-      <section className="py-16 bg-gradient-to-br from-primary-50 to-white">
+      <section className="py-8 sm:py-12 md:py-16 bg-gradient-to-br from-primary-50 to-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
               Come Funziona il Comparatore?
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div className="text-center">
               <div className="bg-gaspower-green text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl">
                 1
@@ -400,12 +404,12 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-8 sm:mt-12">
             <Button 
               onClick={handleCallNow} 
-              className="bg-gaspower-blue hover:bg-blue-600 text-white font-bold text-lg px-8 py-4"
+              className="bg-gaspower-blue hover:bg-blue-600 text-white font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto"
             >
-              <Phone className="h-5 w-5 mr-2" />
+              <Phone className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
               Parlaci Ora: 02 40137880
             </Button>
           </div>
@@ -413,29 +417,29 @@ const Index = () => {
       </section>
 
       {/* Reviews Section */}
-      <section className="py-16 bg-white">
+      <section className="py-8 sm:py-12 md:py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
               Cosa Dicono i Nostri Clienti
             </h2>
             <div className="flex items-center justify-center space-x-2 mb-4">
               <div className="flex text-yellow-400">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-6 w-6 fill-current" />
+                  <Star key={i} className="h-5 w-5 sm:h-6 sm:w-6 fill-current" />
                 ))}
               </div>
-              <span className="text-2xl font-bold">4.9/5</span>
-              <span className="text-gray-600">su oltre 4.690 recensioni</span>
+              <span className="text-xl sm:text-2xl font-bold">4.9/5</span>
+              <span className="text-sm sm:text-base text-gray-600">su oltre 4.690 recensioni</span>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             <Card className="shadow-lg">
               <CardContent className="p-6">
                 <div className="flex text-yellow-400 mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-current" />
+                    <Star key={i} className="h-4 w-4 sm:h-6 sm:w-6 fill-current" />
                   ))}
                 </div>
                 <p className="text-gray-700 mb-4">
@@ -450,7 +454,7 @@ const Index = () => {
               <CardContent className="p-6">
                 <div className="flex text-yellow-400 mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-current" />
+                    <Star key={i} className="h-4 w-4 sm:h-6 sm:w-6 fill-current" />
                   ))}
                 </div>
                 <p className="text-gray-700 mb-4">
@@ -465,7 +469,7 @@ const Index = () => {
               <CardContent className="p-6">
                 <div className="flex text-yellow-400 mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-current" />
+                    <Star key={i} className="h-4 w-4 sm:h-6 sm:w-6 fill-current" />
                   ))}
                 </div>
                 <p className="text-gray-700 mb-4">
@@ -480,23 +484,23 @@ const Index = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 bg-gradient-to-r from-gaspower-green to-gaspower-darkgreen">
+      <section className="py-8 sm:py-12 md:py-16 bg-gradient-to-r from-gaspower-green to-gaspower-darkgreen">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
             Non Aspettare! Inizia Subito a Risparmiare
           </h2>
-          <p className="text-xl text-white/90 mb-8">
+          <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 px-4">
             Chiamaci ora per ricevere una consulenza gratuita personalizzata
           </p>
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <Button 
               onClick={handleCallNow} 
-              className="bg-white text-gaspower-green hover:bg-gray-100 font-bold text-xl px-12 py-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200"
+              className="bg-white text-gaspower-green hover:bg-gray-100 font-bold text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 w-full sm:w-auto"
             >
-              <Phone className="h-6 w-6 mr-3" />
+              <Phone className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3" />
               02 40137880
             </Button>
-            <p className="text-white/80 text-sm">
+            <p className="text-white/80 text-xs sm:text-sm">
               Servizio attivo: Lunedì-Venerdì 8:00-21:00 | Sabato 9:00-13:00
             </p>
           </div>
@@ -504,35 +508,34 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-gray-900 text-white py-8 sm:py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div>
-              <div className="flex items-center space-x-3 mb-4">
+              <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
                 <img 
                   src="/img/logos/gas-power-logo-white.svg" 
                   alt="Gas & Power Logo" 
-                  className="h-8 w-auto"
+                  className="h-6 sm:h-8 w-auto"
                   onError={(e) => {
-                    // Fallback to icon if logo doesn't exist
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
                     target.nextElementSibling?.classList.remove('hidden');
                   }}
                 />
-                <div className="w-8 h-8 bg-gradient-to-br from-gaspower-green to-gaspower-darkgreen rounded-lg flex items-center justify-center hidden">
-                  <Zap className="h-5 w-5 text-white" />
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-gaspower-green to-gaspower-darkgreen rounded-lg flex items-center justify-center hidden">
+                  <Zap className="h-3 w-3 sm:h-5 sm:w-5 text-white" />
                 </div>
-                <h3 className="text-lg font-bold">Gas & Power</h3>
+                <h3 className="text-base sm:text-lg font-bold">Gas & Power</h3>
               </div>
-              <p className="text-gray-400">
+              <p className="text-sm text-gray-400">
                 Il comparatore luce e gas numero uno in Italia
               </p>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Servizi</h4>
-              <ul className="space-y-2 text-gray-400">
+              <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Servizi</h4>
+              <ul className="space-y-2 text-xs sm:text-sm text-gray-400">
                 <li>Confronto Offerte Luce</li>
                 <li>Confronto Offerte Gas</li>
                 <li>Consulenza Gratuita</li>
@@ -541,11 +544,16 @@ const Index = () => {
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Contatti</h4>
-              <ul className="space-y-2 text-gray-400">
+              <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Contatti</h4>
+              <ul className="space-y-2 text-xs sm:text-sm text-gray-400">
                 <li className="flex items-center">
-                  <Phone className="h-4 w-4 mr-2" />
-                  02 40137880
+                  <Phone className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
+                  <button 
+                    onClick={handleCallNow}
+                    className="hover:text-gaspower-green transition-colors"
+                  >
+                    02 40137880
+                  </button>
                 </li>
                 <li>Lun-Ven: 8:00-21:00</li>
                 <li>Sab: 9:00-13:00</li>
@@ -553,27 +561,27 @@ const Index = () => {
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Perché Sceglierci</h4>
-              <ul className="space-y-2 text-gray-400">
+              <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Perché Sceglierci</h4>
+              <ul className="space-y-2 text-xs sm:text-sm text-gray-400">
                 <li className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2 text-gaspower-green" />
+                  <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-gaspower-green" />
                   100% Gratuito
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2 text-gaspower-green" />
+                  <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-gaspower-green" />
                   200.000+ Clienti
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2 text-gaspower-green" />
+                  <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-gaspower-green" />
                   Attivi dal 2015
                 </li>
               </ul>
             </div>
           </div>
           
-          <Separator className="my-8 bg-gray-800" />
+          <Separator className="my-6 sm:my-8 bg-gray-800" />
           
-          <div className="text-center text-gray-400">
+          <div className="text-center text-xs sm:text-sm text-gray-400">
             <p>&copy; 2024 Gas & Power. Tutti i diritti riservati.</p>
           </div>
         </div>
