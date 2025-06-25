@@ -1,32 +1,22 @@
+
 import { useState } from 'react';
 import { Phone, Zap, Users, Shield, CheckCircle, Calculator, Clock, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
 import HeroCarousel from '@/components/HeroCarousel';
+import DetailedComparisonForm from '@/components/DetailedComparisonForm';
+import PartnerLogos from '@/components/PartnerLogos';
+import FAQ from '@/components/FAQ';
 
 const Index = () => {
-  const [utilityType, setUtilityType] = useState('both');
-  const [currentKnowledge, setCurrentKnowledge] = useState('');
-  const [isResident, setIsResident] = useState('');
-  const [homeSize, setHomeSize] = useState('');
-  const [residents, setResidents] = useState('');
-  const [heatingType, setHeatingType] = useState('');
-  const [hotWaterType, setHotWaterType] = useState('');
-  const [cookingType, setCookingType] = useState('');
-
   const phoneNumber = '0240137880';
   
   const handleCallNow = () => {
     window.location.href = `tel:${phoneNumber}`;
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleFormSubmit = () => {
     handleCallNow();
   };
 
@@ -52,13 +42,21 @@ const Index = () => {
               </div>
               <h1 className="text-lg sm:text-2xl font-bold text-gray-900">Gas & Power</h1>
             </div>
-            <Button 
-              onClick={handleCallNow} 
-              className="bg-gaspower-blue hover:bg-blue-600 text-white font-semibold px-3 sm:px-6 py-2 text-sm sm:text-base"
-            >
-              <Phone className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-              <span className="hidden xs:inline">02 </span>40137880
-            </Button>
+            <div className="flex items-center space-x-3">
+              <Button 
+                onClick={handleCallNow} 
+                className="bg-gaspower-blue hover:bg-blue-600 text-white font-semibold px-3 sm:px-6 py-2 text-sm sm:text-base"
+              >
+                <Phone className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                <span className="hidden xs:inline">06 </span>9450 0303
+              </Button>
+              <Button 
+                variant="outline"
+                className="text-gaspower-blue border-gaspower-blue hover:bg-gaspower-blue hover:text-white font-semibold px-3 sm:px-6 py-2 text-sm sm:text-base"
+              >
+                📞 Fatti richiamare
+              </Button>
+            </div>
           </div>
         </div>
       </header>
@@ -86,7 +84,7 @@ const Index = () => {
                 className="bg-gaspower-blue hover:bg-blue-600 text-white font-bold text-sm sm:text-lg px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 w-full sm:w-auto"
               >
                 <Phone className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                Chiama Ora: 02 40137880
+                Chiama Ora: 06 9450 0303
               </Button>
               <p className="text-xs sm:text-sm text-white/80 drop-shadow-md text-center px-2">
                 Consulenza gratuita dal lunedì al venerdì 8-21, sabato 9-13
@@ -121,297 +119,74 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Comparison Form */}
-      <section className="py-8 sm:py-12 md:py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
-              Confronta le Tariffe in 3 Semplici Passi
-            </h2>
-            <p className="text-base sm:text-lg text-gray-600 px-4">
-              Inserisci i dati della tua bolletta per ricevere un confronto personalizzato
-            </p>
-          </div>
+      {/* Detailed Comparison Form */}
+      <DetailedComparisonForm onSubmit={handleFormSubmit} />
 
-          <Card className="shadow-xl border-primary-200">
-            <CardHeader className="bg-gradient-to-r from-gaspower-green to-gaspower-darkgreen text-white p-4 sm:p-6">
-              <CardTitle className="text-lg sm:text-xl flex items-center">
-                <Calculator className="h-5 w-5 sm:h-6 sm:w-6 mr-2" />
-                Comparatore Bollette - Inserisci i tuoi dati
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-4 sm:p-6 md:p-8">
-              <form onSubmit={handleFormSubmit} className="space-y-6 sm:space-y-8">
-                {/* Utility Type Selection */}
-                <div>
-                  <Label className="text-lg font-semibold mb-4 block">
-                    Che tipo di offerta vuoi confrontare?
-                  </Label>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    <Button
-                      type="button"
-                      variant={utilityType === 'electricity' ? 'default' : 'outline'}
-                      onClick={() => setUtilityType('electricity')}
-                      className="p-4 h-auto"
-                    >
-                      <Zap className="h-5 w-5 mr-2" />
-                      Solo Luce
-                    </Button>
-                    <Button
-                      type="button"
-                      variant={utilityType === 'gas' ? 'default' : 'outline'}
-                      onClick={() => setUtilityType('gas')}
-                      className="p-4 h-auto"
-                    >
-                      🔥 Solo Gas
-                    </Button>
-                    <Button
-                      type="button"
-                      variant={utilityType === 'both' ? 'default' : 'outline'}
-                      onClick={() => setUtilityType('both')}
-                      className="p-4 h-auto bg-gaspower-green hover:bg-gaspower-darkgreen"
-                    >
-                      <Zap className="h-5 w-5 mr-2" />
-                      Luce + Gas
-                    </Button>
-                  </div>
-                </div>
-
-                <Separator />
-
-                {/* User Knowledge */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <Label className="font-semibold mb-4 block">Conosci i tuoi consumi?</Label>
-                    <RadioGroup value={currentKnowledge} onValueChange={setCurrentKnowledge}>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="know-yes" />
-                        <Label htmlFor="know-yes">Sì</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="know-no" />
-                        <Label htmlFor="know-no">No</Label>
-                      </div>
-                    </RadioGroup>
-                  </div>
-                  
-                  <div>
-                    <Label className="font-semibold mb-4 block">Sei residente?</Label>
-                    <RadioGroup value={isResident} onValueChange={setIsResident}>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="yes" id="resident-yes" />
-                        <Label htmlFor="resident-yes">Sì</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="no" id="resident-no" />
-                        <Label htmlFor="resident-no">No</Label>
-                      </div>
-                    </RadioGroup>
-                  </div>
-                </div>
-
-                <Separator />
-
-                {/* Home Details */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <Label htmlFor="homeSize" className="font-semibold">Dimensione abitazione (mq)</Label>
-                    <Input
-                      id="homeSize"
-                      type="number"
-                      placeholder="es. 80"
-                      value={homeSize}
-                      onChange={(e) => setHomeSize(e.target.value)}
-                      className="mt-2"
-                    />
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="residents" className="font-semibold">Numero di persone in casa</Label>
-                    <Select value={residents} onValueChange={setResidents}>
-                      <SelectTrigger className="mt-2">
-                        <SelectValue placeholder="Seleziona..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1">1 persona</SelectItem>
-                        <SelectItem value="2">2 persone</SelectItem>
-                        <SelectItem value="3">3 persone</SelectItem>
-                        <SelectItem value="4">4 persone</SelectItem>
-                        <SelectItem value="5+">5+ persone</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-
-                {/* Energy Usage */}
-                <div className="space-y-6">
-                  <h3 className="font-semibold text-lg">Tipo di energia utilizzata:</h3>
-                  
-                  <div>
-                    <Label className="font-semibold mb-2 block">Riscaldamento:</Label>
-                    <div className="grid md:grid-cols-3 gap-4">
-                      <Button
-                        type="button"
-                        variant={heatingType === 'electricity' ? 'default' : 'outline'}
-                        onClick={() => setHeatingType('electricity')}
-                        className="p-3"
-                      >
-                        Elettrico
-                      </Button>
-                      <Button
-                        type="button"
-                        variant={heatingType === 'gas' ? 'default' : 'outline'}
-                        onClick={() => setHeatingType('gas')}
-                        className="p-3"
-                      >
-                        Gas
-                      </Button>
-                      <Button
-                        type="button"
-                        variant={heatingType === 'other' ? 'default' : 'outline'}
-                        onClick={() => setHeatingType('other')}
-                        className="p-3"
-                      >
-                        Altro
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div>
-                    <Label className="font-semibold mb-2 block">Acqua calda sanitaria:</Label>
-                    <div className="grid md:grid-cols-3 gap-4">
-                      <Button
-                        type="button"
-                        variant={hotWaterType === 'electricity' ? 'default' : 'outline'}
-                        onClick={() => setHotWaterType('electricity')}
-                        className="p-3"
-                      >
-                        Elettrico
-                      </Button>
-                      <Button
-                        type="button"
-                        variant={hotWaterType === 'gas' ? 'default' : 'outline'}
-                        onClick={() => setHotWaterType('gas')}
-                        className="p-3"
-                      >
-                        Gas
-                      </Button>
-                      <Button
-                        type="button"
-                        variant={hotWaterType === 'other' ? 'default' : 'outline'}
-                        onClick={() => setHotWaterType('other')}
-                        className="p-3"
-                      >
-                        Altro
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div>
-                    <Label className="font-semibold mb-2 block">Cucina:</Label>
-                    <div className="grid md:grid-cols-3 gap-4">
-                      <Button
-                        type="button"
-                        variant={cookingType === 'electricity' ? 'default' : 'outline'}
-                        onClick={() => setCookingType('electricity')}
-                        className="p-3"
-                      >
-                        Elettrico
-                      </Button>
-                      <Button
-                        type="button"
-                        variant={cookingType === 'gas' ? 'default' : 'outline'}
-                        onClick={() => setCookingType('gas')}
-                        className="p-3"
-                      >
-                        Gas
-                      </Button>
-                      <Button
-                        type="button"
-                        variant={cookingType === 'other' ? 'default' : 'outline'}
-                        onClick={() => setCookingType('other')}
-                        className="p-3"
-                      >
-                        Altro
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* CTA Button */}
-                <div className="bg-gradient-to-r from-gaspower-green to-gaspower-darkgreen p-4 sm:p-6 rounded-lg text-center">
-                  <h3 className="text-white font-bold text-lg sm:text-xl mb-3 sm:mb-4">
-                    Ricevi Subito le Migliori Offerte!
-                  </h3>
-                  <p className="text-white/90 mb-4 sm:mb-6 text-sm sm:text-base">
-                    I nostri esperti ti chiameranno per fornirti un confronto personalizzato e gratuito
-                  </p>
-                  <Button
-                    type="submit"
-                    onClick={handleCallNow}
-                    className="bg-white text-gaspower-green hover:bg-gray-100 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 w-full sm:w-auto"
-                  >
-                    <Phone className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                    Chiama Ora: 02 40137880
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+      {/* Partner Logos */}
+      <PartnerLogos />
 
       {/* Process Steps */}
       <section className="py-8 sm:py-12 md:py-16 bg-gradient-to-br from-primary-50 to-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
-              Come Funziona il Comparatore?
+              Come funziona il comparatore?
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div className="text-center">
-              <div className="bg-gaspower-green text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl">
+              <div className="bg-gaspower-blue text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl relative">
                 1
+                <div className="absolute -right-8 top-1/2 transform -translate-y-1/2 hidden md:block">
+                  <div className="w-6 h-0.5 bg-gaspower-blue"></div>
+                </div>
               </div>
-              <h3 className="font-semibold text-lg mb-2">Inserisci i Dati</h3>
-              <p className="text-gray-600">Compila il form con le informazioni della tua casa</p>
+              <h3 className="font-semibold text-lg mb-2 text-gaspower-blue">Compila i dati di consumo e dell'utenza</h3>
+              <p className="text-gray-600 text-sm">Se non conosci i tuoi consumi, niente panico: puoi fare una stima con le caratteristiche della casa.</p>
             </div>
             
             <div className="text-center">
-              <div className="bg-gaspower-green text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl">
+              <div className="bg-gaspower-blue text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl relative">
                 2
+                <div className="absolute -right-8 top-1/2 transform -translate-y-1/2 hidden md:block">
+                  <div className="w-6 h-0.5 bg-gaspower-blue"></div>
+                </div>
               </div>
-              <h3 className="font-semibold text-lg mb-2">Confronta le Offerte</h3>
-              <p className="text-gray-600">I nostri esperti valutano le migliori tariffe per te</p>
+              <h3 className="font-semibold text-lg mb-2 text-gaspower-blue">Valuta e confronta le offerte</h3>
+              <p className="text-gray-600 text-sm">Scopri le offerte migliori, leggi il prezzo, i vantaggi e valuta il fornitore adatto per te e la tua famiglia.</p>
             </div>
             
             <div className="text-center">
-              <div className="bg-gaspower-green text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl">
+              <div className="bg-gaspower-blue text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl relative">
                 3
+                <div className="absolute -right-8 top-1/2 transform -translate-y-1/2 hidden md:block">
+                  <div className="w-6 h-0.5 bg-gaspower-blue"></div>
+                </div>
               </div>
-              <h3 className="font-semibold text-lg mb-2">Ricevi la Chiamata</h3>
-              <p className="text-gray-600">Ti contatteremo per illustrarti le soluzioni migliori</p>
+              <h3 className="font-semibold text-lg mb-2 text-gaspower-blue">Attiva un'offerta conveniente</h3>
+              <p className="text-gray-600 text-sm">Puoi farlo in autonomia o chiamando un operatore di Selectra, il cambio è gratuito e avviene in pochi minuti.</p>
             </div>
             
             <div className="text-center">
               <div className="bg-gaspower-green text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl">
                 4
               </div>
-              <h3 className="font-semibold text-lg mb-2">Inizia a Risparmiare</h3>
-              <p className="text-gray-600">Attiviamo la nuova offerta in pochi minuti</p>
+              <h3 className="font-semibold text-lg mb-2 text-gaspower-green">Inizia a risparmiare in bolletta</h3>
+              <p className="text-gray-600 text-sm">Bene, noi pensiamo a tutta la burocrazia, tu devi solo aspettare la comunicazione dal nuovo fornitore scelto.</p>
             </div>
           </div>
 
-          <div className="text-center mt-8 sm:mt-12">
-            <Button 
-              onClick={handleCallNow} 
-              className="bg-gaspower-blue hover:bg-blue-600 text-white font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto"
-            >
-              <Phone className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-              Parlaci Ora: 02 40137880
-            </Button>
+          <div className="text-center mt-12 bg-white p-8 rounded-lg shadow-lg">
+            <div className="flex items-center justify-center mb-6">
+              <div className="bg-gaspower-blue text-white px-4 py-2 rounded-lg text-2xl font-bold mr-4">
+                Più di 200000
+              </div>
+              <span className="text-lg text-gray-700">italiani si sono fidati di noi dal 2015</span>
+              <Button className="ml-6 bg-gaspower-blue hover:bg-blue-600">
+                📞 06 9450 0303
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -421,88 +196,138 @@ const Index = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
-              Cosa Dicono i Nostri Clienti
+              I clienti soddisfatti di Selectra
             </h2>
-            <div className="flex items-center justify-center space-x-2 mb-4">
-              <div className="flex text-yellow-400">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 sm:h-6 sm:w-6 fill-current" />
-                ))}
+            <div className="flex items-center justify-center space-x-8 mb-4">
+              <div className="text-center">
+                <div className="text-4xl font-bold text-gaspower-blue">4.9</div>
+                <div className="text-gray-600">/5</div>
+                <div className="flex text-yellow-400 justify-center">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-current" />
+                  ))}
+                </div>
+                <div className="text-sm text-gray-600">Calcolato su 4690 opinioni totali</div>
               </div>
-              <span className="text-xl sm:text-2xl font-bold">4.9/5</span>
-              <span className="text-sm sm:text-base text-gray-600">su oltre 4.690 recensioni</span>
+              
+              <div className="text-center">
+                <div className="bg-green-600 text-white px-3 py-1 rounded text-sm font-semibold mb-2">★ Trustpilot</div>
+                <div className="text-2xl font-bold">4.9</div>
+                <div className="text-gray-600">/5</div>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold mx-auto mb-2">G</div>
+                <div className="text-2xl font-bold">4.7</div>
+                <div className="text-gray-600">/5</div>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold mx-auto mb-2">G</div>
+                <div className="text-2xl font-bold">4.9</div>
+                <div className="text-gray-600">/5</div>
+              </div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             <Card className="shadow-lg">
               <CardContent className="p-6">
-                <div className="flex text-yellow-400 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 sm:h-6 sm:w-6 fill-current" />
-                  ))}
+                <div className="flex items-center mb-4">
+                  <div className="w-10 h-10 bg-gaspower-green rounded-full flex items-center justify-center text-white font-bold mr-3">
+                    G
+                  </div>
+                  <div>
+                    <div className="font-semibold">Gianni</div>
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-current" />
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <p className="text-gray-700 mb-4">
-                  "Servizio eccellente! Mi hanno aiutato a risparmiare oltre 300€ all'anno sulla bolletta. 
-                  Consiglio vivamente."
+                <p className="text-gray-700 text-sm mb-4">
+                  "Io sto avendo a che fare con *** e posso affermare che è la migliore persona con cui abbia avuto mai a che fare."
                 </p>
-                <p className="font-semibold">- Marco R.</p>
               </CardContent>
             </Card>
 
             <Card className="shadow-lg">
               <CardContent className="p-6">
-                <div className="flex text-yellow-400 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 sm:h-6 sm:w-6 fill-current" />
-                  ))}
+                <div className="flex items-center mb-4">
+                  <div className="w-10 h-10 bg-gaspower-blue rounded-full flex items-center justify-center text-white font-bold mr-3">
+                    L
+                  </div>
+                  <div>
+                    <div className="font-semibold">Luca</div>
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-current" />
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <p className="text-gray-700 mb-4">
-                  "Operatori competenti e disponibili. Il cambio è stato rapidissimo e senza problemi. 
-                  Finalmente bollette più leggere!"
+                <p className="text-gray-700 text-sm mb-4">
+                  "Un servizio davvero efficiente, gentilezza e professionalità. Io ho parlato con la signora *** che è stata gentilissima. Voto 5 stelle super!"
                 </p>
-                <p className="font-semibold">- Sara T.</p>
               </CardContent>
             </Card>
 
             <Card className="shadow-lg">
               <CardContent className="p-6">
-                <div className="flex text-yellow-400 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 sm:h-6 sm:w-6 fill-current" />
-                  ))}
+                <div className="flex items-center mb-4">
+                  <div className="w-10 h-10 bg-gaspower-green rounded-full flex items-center justify-center text-white font-bold mr-3">
+                    M
+                  </div>
+                  <div>
+                    <div className="font-semibold">Maria</div>
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-current" />
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <p className="text-gray-700 mb-4">
-                  "Trasparenza totale e nessun costo nascosto. Mi hanno spiegato tutto nei dettagli. 
-                  Molto soddisfatto!"
+                <p className="text-gray-700 text-sm mb-4">
+                  "Ottima assistenza, competente e risolutiva. Bello poter parlare sempre con lo stesso operatore così da non dover spiegare le cose 10 volte."
                 </p>
-                <p className="font-semibold">- Giuseppe M.</p>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <FAQ />
+
       {/* Final CTA */}
       <section className="py-8 sm:py-12 md:py-16 bg-gradient-to-r from-gaspower-green to-gaspower-darkgreen">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
-            Non Aspettare! Inizia Subito a Risparmiare
+            Il portale Luce e Gas numero uno in Italia
           </h2>
-          <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 px-4">
-            Chiamaci ora per ricevere una consulenza gratuita personalizzata
-          </p>
-          <div className="space-y-4 sm:space-y-6">
-            <Button 
-              onClick={handleCallNow} 
-              className="bg-white text-gaspower-green hover:bg-gray-100 font-bold text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 w-full sm:w-auto"
-            >
-              <Phone className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3" />
-              02 40137880
-            </Button>
-            <p className="text-white/80 text-xs sm:text-sm">
-              Servizio attivo: Lunedì-Venerdì 8:00-21:00 | Sabato 9:00-13:00
-            </p>
+          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 mb-8">
+            <div className="flex items-center justify-center space-x-4 mb-4">
+              <div className="text-center">
+                <div className="text-white font-bold">💬 Chiamaci per info e attivazioni</div>
+                <div className="text-white/80 text-sm">dal lunedì al venerdì dalle 8 alle 21 e il sabato dalle 9 alle 13</div>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button 
+                onClick={handleCallNow} 
+                className="bg-gaspower-blue hover:bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg"
+              >
+                <Phone className="h-5 w-5 mr-2" />
+                📞 06 9450 0303
+              </Button>
+              <Button 
+                variant="outline"
+                className="bg-white text-gaspower-blue border-2 border-white hover:bg-gray-100 font-bold text-lg px-8 py-4 rounded-lg"
+              >
+                📞 Ti richiamiamo
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -528,18 +353,31 @@ const Index = () => {
                 </div>
                 <h3 className="text-base sm:text-lg font-bold">Gas & Power</h3>
               </div>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-gray-400 mb-4">
                 Il comparatore luce e gas numero uno in Italia
               </p>
+              <div className="bg-yellow-500 text-black px-3 py-2 rounded text-sm font-semibold inline-block">
+                Luce-Gas.it è valutato 4.88/5 dai suoi clienti
+              </div>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Servizi</h4>
+              <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Offerte</h4>
               <ul className="space-y-2 text-xs sm:text-sm text-gray-400">
-                <li>Confronto Offerte Luce</li>
-                <li>Confronto Offerte Gas</li>
-                <li>Consulenza Gratuita</li>
-                <li>Gestione Contratti</li>
+                <li><a href="#" className="hover:text-gaspower-green transition-colors">Offerte Luce e Gas</a></li>
+                <li><a href="#" className="hover:text-gaspower-green transition-colors">Offerte Luce</a></li>
+                <li><a href="#" className="hover:text-gaspower-green transition-colors">Offerte Gas</a></li>
+                <li><a href="#" className="hover:text-gaspower-green transition-colors">Gestore Energia più conveniente</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Servizi Utili</h4>
+              <ul className="space-y-2 text-xs sm:text-sm text-gray-400">
+                <li><a href="#" className="hover:text-gaspower-green transition-colors">Confronta le offerte</a></li>
+                <li><a href="#" className="hover:text-gaspower-green transition-colors">Bollettometro</a></li>
+                <li><a href="#" className="hover:text-gaspower-green transition-colors">Abbassa Bolletta</a></li>
+                <li><a href="#" className="hover:text-gaspower-green transition-colors">Trova tuo Distributore</a></li>
               </ul>
             </div>
             
@@ -552,29 +390,12 @@ const Index = () => {
                     onClick={handleCallNow}
                     className="hover:text-gaspower-green transition-colors"
                   >
-                    02 40137880
+                    06 9450 0303
                   </button>
                 </li>
                 <li>Lun-Ven: 8:00-21:00</li>
                 <li>Sab: 9:00-13:00</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Perché Sceglierci</h4>
-              <ul className="space-y-2 text-xs sm:text-sm text-gray-400">
-                <li className="flex items-center">
-                  <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-gaspower-green" />
-                  100% Gratuito
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-gaspower-green" />
-                  200.000+ Clienti
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-gaspower-green" />
-                  Attivi dal 2015
-                </li>
+                <li><a href="#" className="hover:text-gaspower-green transition-colors">Chi siamo</a></li>
               </ul>
             </div>
           </div>
