@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Phone, Zap, Users, Shield, CheckCircle, Calculator, Clock, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
+import HeroCarousel from '@/components/HeroCarousel';
 
 const Index = () => {
   const [utilityType, setUtilityType] = useState('both');
@@ -37,7 +37,18 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-gaspower-green to-gaspower-darkgreen rounded-lg flex items-center justify-center">
+              <img 
+                src="/img/logos/gas-power-logo.svg" 
+                alt="Gas & Power Logo" 
+                className="h-12 w-auto"
+                onError={(e) => {
+                  // Fallback to icon if logo doesn't exist
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  target.nextElementSibling?.classList.remove('hidden');
+                }}
+              />
+              <div className="w-10 h-10 bg-gradient-to-br from-gaspower-green to-gaspower-darkgreen rounded-lg flex items-center justify-center hidden">
                 <Zap className="h-6 w-6 text-white" />
               </div>
               <h1 className="text-2xl font-bold text-gray-900">Gas & Power</h1>
@@ -53,25 +64,33 @@ const Index = () => {
       {/* Hero Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 animate-fade-in">
-              Confronta le <span className="text-gaspower-green">Migliori Offerte</span>
-              <br />
-              Luce e Gas
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto animate-fade-in">
-              Trova la tariffa più conveniente per la tua casa. Confronta gratuitamente 
-              le offerte dei principali fornitori e inizia subito a risparmiare.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in">
-              <Button 
-                onClick={handleCallNow} 
-                className="bg-gaspower-blue hover:bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200"
-              >
-                <Phone className="h-5 w-5 mr-2" />
-                Chiama Ora: 02 40137880
-              </Button>
-              <p className="text-sm text-gray-500">Consulenza gratuita dal lunedì al venerdì 8-21, sabato 9-13</p>
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
+            {/* Left Column - Text Content */}
+            <div className="text-center lg:text-left">
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 animate-fade-in">
+                Confronta le <span className="text-gaspower-green">Migliori Offerte</span>
+                <br />
+                Luce e Gas
+              </h1>
+              <p className="text-xl text-gray-600 mb-8 animate-fade-in">
+                Trova la tariffa più conveniente per la tua casa. Confronta gratuitamente 
+                le offerte dei principali fornitori e inizia subito a risparmiare.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center animate-scale-in">
+                <Button 
+                  onClick={handleCallNow} 
+                  className="bg-gaspower-blue hover:bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200"
+                >
+                  <Phone className="h-5 w-5 mr-2" />
+                  Chiama Ora: 02 40137880
+                </Button>
+                <p className="text-sm text-gray-500">Consulenza gratuita dal lunedì al venerdì 8-21, sabato 9-13</p>
+              </div>
+            </div>
+
+            {/* Right Column - Hero Carousel */}
+            <div className="h-96 lg:h-[500px] animate-fade-in">
+              <HeroCarousel />
             </div>
           </div>
 
@@ -494,7 +513,18 @@ const Index = () => {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-gaspower-green to-gaspower-darkgreen rounded-lg flex items-center justify-center">
+                <img 
+                  src="/img/logos/gas-power-logo-white.svg" 
+                  alt="Gas & Power Logo" 
+                  className="h-8 w-auto"
+                  onError={(e) => {
+                    // Fallback to icon if logo doesn't exist
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    target.nextElementSibling?.classList.remove('hidden');
+                  }}
+                />
+                <div className="w-8 h-8 bg-gradient-to-br from-gaspower-green to-gaspower-darkgreen rounded-lg flex items-center justify-center hidden">
                   <Zap className="h-5 w-5 text-white" />
                 </div>
                 <h3 className="text-lg font-bold">Gas & Power</h3>
