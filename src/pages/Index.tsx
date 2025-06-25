@@ -38,7 +38,7 @@ const Index = () => {
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-2 sm:space-x-3">
               <img 
-                src="/img/logos/gas-power-logo.svg" 
+                src="/placeholder.svg" 
                 alt="Gas & Power Logo" 
                 className="h-8 sm:h-12 w-auto"
                 onError={(e) => {
@@ -514,7 +514,7 @@ const Index = () => {
             <div>
               <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
                 <img 
-                  src="/img/logos/gas-power-logo-white.svg" 
+                  src="/placeholder.svg" 
                   alt="Gas & Power Logo" 
                   className="h-6 sm:h-8 w-auto"
                   onError={(e) => {
