@@ -26,7 +26,7 @@ const FinalCTA = ({ onCallNow }: FinalCTAProps) => {
               className="bg-gaspower-blue hover:bg-blue-600 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg"
             >
               <Phone className="h-5 w-5 mr-2" />
-              📞 06 9450 0303
+              📞 02 4013 7880
             </Button>
             <Button 
               variant="outline"

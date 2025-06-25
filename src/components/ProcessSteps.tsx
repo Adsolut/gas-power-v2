@@ -68,7 +68,7 @@ const ProcessSteps = ({ onCallNow }: ProcessStepsProps) => {
               onClick={onCallNow}
               className="ml-6 bg-gaspower-blue hover:bg-blue-600"
             >
-              📞 06 9450 0303
+              📞 02 4013 7880
             </Button>
           </div>
         </div>

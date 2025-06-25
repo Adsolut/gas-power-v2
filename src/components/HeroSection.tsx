@@ -31,7 +31,7 @@ const HeroSection = ({ onCallNow }: HeroSectionProps) => {
               className="bg-gaspower-blue hover:bg-blue-600 text-white font-bold text-sm sm:text-lg px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 w-full sm:w-auto"
             >
               <Phone className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-              Chiama Ora: 06 9450 0303
+              Chiama Ora: 02 4013 7880
             </Button>
             <p className="text-xs sm:text-sm text-white/80 drop-shadow-md text-center px-2">
               Consulenza gratuita dal lunedì al venerdì 8-21, sabato 9-13
