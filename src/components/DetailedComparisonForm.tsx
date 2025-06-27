@@ -61,14 +61,14 @@ const DetailedComparisonForm = ({
                 <div className="grid md:grid-cols-3 gap-4">
                   <Button type="button" variant={utilityType === 'electricity' ? 'default' : 'outline'} onClick={() => setUtilityType('electricity')} className="p-6 h-auto text-base">
                     <Zap className="h-5 w-5 mr-2" />
-                    Elettricità
+                    Luce
                   </Button>
                   <Button type="button" variant={utilityType === 'gas' ? 'default' : 'outline'} onClick={() => setUtilityType('gas')} className="p-6 h-auto text-base">
                     🔥 Gas
                   </Button>
                   <Button type="button" variant={utilityType === 'both' ? 'default' : 'outline'} onClick={() => setUtilityType('both')} className="p-6 h-auto bg-gaspower-blue hover:bg-blue-600 text-base">
                     <Zap className="h-5 w-5 mr-2" />
-                    Elettricità e gas
+                    Luce e gas
                   </Button>
                 </div>
               </div>
