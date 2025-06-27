@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 
 interface ProcessStepsProps {
@@ -46,7 +45,7 @@ const ProcessSteps = ({ onCallNow }: ProcessStepsProps) => {
               </div>
             </div>
             <h3 className="font-semibold text-lg mb-2 text-gaspower-blue">Attiva un'offerta conveniente</h3>
-            <p className="text-gray-600 text-sm">Puoi farlo in autonomia o chiamando un operatore di Selectra, il cambio è gratuito e avviene in pochi minuti.</p>
+            <p className="text-gray-600 text-sm">Puoi farlo in autonomia o chiamando un operatore qualificato, il cambio è gratuito e avviene in pochi minuti.</p>
           </div>
           
           <div className="text-center">

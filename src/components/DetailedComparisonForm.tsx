@@ -8,9 +8,11 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
 import { Calculator, Phone, Zap } from 'lucide-react';
 import ApplianceSelector from './ApplianceSelector';
+
 interface DetailedComparisonFormProps {
   onSubmit: () => void;
 }
+
 const DetailedComparisonForm = ({
   onSubmit
 }: DetailedComparisonFormProps) => {
@@ -28,14 +30,15 @@ const DetailedComparisonForm = ({
     e.preventDefault();
     onSubmit();
   };
-  return <section className="py-12 md:py-16 bg-white">
+  return (
+    <section className="py-12 md:py-16 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Comparatore luce e gas: confronta le tariffe</h2>
           <p className="text-lg text-gray-600 px-4">
             Compilando il form con i dati della bolletta confronti le offerte in base ai tuoi consumi. 
             <span className="inline-flex items-center ml-2 px-3 py-1 bg-gaspower-blue text-white text-sm rounded-full">
-              Selectra 🔒 non chiede i tuoi dati personali!
+              🔒 Non chiediamo i tuoi dati personali!
             </span>
           </p>
         </div>
@@ -199,6 +202,8 @@ const DetailedComparisonForm = ({
           </CardContent>
         </Card>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default DetailedComparisonForm;
