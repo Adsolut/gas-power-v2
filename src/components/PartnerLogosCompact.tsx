@@ -22,11 +22,11 @@ const PartnerLogosCompact = () => {
       color: 'from-yellow-500 to-orange-500'
     },
     { 
-      name: 'Edison', 
-      logo: '/img/partners/edison.svg',
-      description: 'Tradizione dal 1884',
-      marketShare: '12%',
-      color: 'from-blue-500 to-blue-600'
+      name: 'Acea', 
+      logo: '/img/partners/acea.svg',
+      description: 'Servizi essenziali integrati',
+      marketShare: '11%',
+      color: 'from-blue-500 to-cyan-500'
     },
     { 
       name: 'Sorgenia', 
@@ -57,7 +57,7 @@ const PartnerLogosCompact = () => {
       });
 
       await Promise.allSettled(promises);
-      console.log('🎉 Caricamento loghi partners completato (Enel, Eni, Edison, Sorgenia)');
+      console.log('🎉 Caricamento loghi partners completato (Enel, Eni, Acea, Sorgenia)');
     };
 
     preloadLogos();

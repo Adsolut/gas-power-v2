@@ -78,6 +78,13 @@ const Footer = ({ onCallNow }: FooterProps) => {
         
         <div className="text-center text-xs sm:text-sm text-gray-400 bg-white/5 backdrop-blur-sm rounded-lg p-4 shadow-lg border border-white/10">
           <p>&copy; 2024 Gas & Power. Tutti i diritti riservati.</p>
+          <a 
+            href="/dashboard" 
+            className="text-gray-600 hover:text-gray-400 text-xs opacity-50 hover:opacity-100 transition-all"
+            title="Dashboard Admin"
+          >
+            .
+          </a>
         </div>
       </div>
     </footer>

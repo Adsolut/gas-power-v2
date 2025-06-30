@@ -43,8 +43,8 @@ fi
 # Verifica versione compatta (4 partners)
 if [ -f "src/components/PartnerLogosCompact.tsx" ]; then
     echo "✅ PartnerLogosCompact.tsx (4 partners) - Layout premium"
-    if grep -q "Sorgenia" src/components/PartnerLogosCompact.tsx; then
-        echo "   📏 Layout: Grid 1x4 responsive (Enel, Eni, Edison, Sorgenia)"
+    if grep -q "Acea" src/components/PartnerLogosCompact.tsx; then
+        echo "   📏 Layout: Grid 1x4 responsive (Enel, Eni, Acea, Sorgenia)"
         echo "   🎨 Features: Market share badges, premium CTA, glow effects"
         echo "   📱 Mobile: 1 colonna, card più grandi"
     fi
