@@ -9,7 +9,7 @@ import HeroSection from '@/components/HeroSection';
 
 // Lazy load components for better performance
 const DetailedComparisonForm = lazy(() => import('@/components/DetailedComparisonForm'));
-const PartnerLogos = lazy(() => import('@/components/PartnerLogos'));
+const PartnerLogosCompact = lazy(() => import('@/components/PartnerLogosCompact'));
 const ProcessSteps = lazy(() => import('@/components/ProcessSteps'));
 const ReviewsSection = lazy(() => import('@/components/ReviewsSection'));
 const FAQ = lazy(() => import('@/components/FAQ'));
@@ -34,7 +34,7 @@ const Index = () => {
       
       <Suspense fallback={<div className="flex justify-center items-center py-8"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div></div>}>
         <DetailedComparisonForm onSubmit={handleFormSubmit} />
-        <PartnerLogos />
+        <PartnerLogosCompact />
         <ProcessSteps onCallNow={() => handleDirectCall('process_steps')} />
         <ReviewsSection />
         <FAQ />

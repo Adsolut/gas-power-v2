@@ -25,7 +25,30 @@ cd "/Users/aldosantoro/Desktop/gas-power-compara"
 npm run dev
 ```
 
-### 2. **Test Funzionalità Principali**
+### 2. **Test Carousel Hero Section** 🖼️
+```bash
+# Verifica che le immagini esistano
+bash test-hero-carousel.sh
+```
+
+**Cosa verificare:**
+- ✅ Le 4 immagini del carousel si vedono
+- ✅ Transizione automatica ogni 5 secondi  
+- ✅ Pulsanti freccia funzionanti
+- ✅ Indicatori slide cliccabili
+- ✅ Progress bar in movimento
+
+**Console Browser (F12) - Log attesi:**
+```
+🎯 HeroSection montata - Carousel dovrebbe essere visibile
+✅ Immagine caricata: /img/hero/famiglia-risparmio.jpg
+✅ Immagine caricata: /img/hero/consulente-telefono.jpg
+✅ Immagine caricata: /img/hero/casa-moderna.jpg
+✅ Immagine caricata: /img/hero/grafici-risparmio.jpg
+🎉 Tutte le immagini del carousel sono state caricate!
+```
+
+### 3. **Test Funzionalità Principali**
 
 #### ✅ **Test Header Ottimizzato**
 - Clicca "Fatti richiamare" in header
@@ -52,6 +75,35 @@ npm run dev
 - Vai su: `http://localhost:5173/admin`
 - Password: `gaspower2024`
 - Verifica che mostri le conversioni registrate
+
+---
+
+## 🔧 **TROUBLESHOOTING CAROUSEL**
+
+### 💡 **Problema: Immagini non visibili**
+**Soluzioni:**
+1. Apri Console Browser (F12) e cerca errori
+2. Verifica percorsi immagini:
+   ```bash
+   ls -la public/img/hero/
+   ```
+3. Controlla formato file (deve essere .jpg)
+4. Ricarica pagina con Ctrl+F5
+5. Se vedi gradiente colorato = fallback attivo
+
+### 💡 **Problema: Carousel non cambia slide**
+**Soluzioni:**
+1. Verifica JavaScript attivo nel browser
+2. Controlla console per errori React
+3. Prova a cliccare indicatori manualmente
+4. Verifica che `useEffect` sia attivo
+
+### 💡 **Problema: Layout rotto su mobile**
+**Soluzioni:**
+1. Testa responsive design (F12 > Toggle Device)
+2. Verifica altezza sezione su mobile
+3. Controlla z-index elementi sovrapposti
+4. Testa su device reale
 
 ---
 
