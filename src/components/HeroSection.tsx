@@ -44,7 +44,7 @@ const HeroSection = ({ onCallNow }: HeroSectionProps) => {
               <div className="bg-white/20 backdrop-blur-sm rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mx-auto mb-2 sm:mb-4">
                 <Users className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-sm sm:text-lg mb-1 sm:mb-2 text-white drop-shadow-md">Oltre 200.000 Clienti</h3>
+              <h3 className="font-semibold text-sm sm:text-lg mb-1 sm:mb-2 text-white drop-shadow-md">Oltre 2.000.000 Clienti</h3>
               <p className="text-xs sm:text-base text-white/80 drop-shadow-md">Si sono fidati di noi dal 2015</p>
             </div>
             <div className="text-center animate-fade-in">
