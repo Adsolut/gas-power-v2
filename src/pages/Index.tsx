@@ -1,5 +1,8 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { useConversionTracking } from '@/hooks/useConversionTracking';
+import { useSEO } from '@/hooks/useSEO';
+import SEOHead from '@/components/SEO/SEOHead';
+import { generateStructuredData } from '@/utils/seoUtils';
 
 // Import optimized components
 import OptimizedHeader from '@/components/optimized/OptimizedHeader';
@@ -16,14 +19,30 @@ const FAQ = lazy(() => import('@/components/FAQ'));
 const Footer = lazy(() => import('@/components/Footer'));
 
 const Index = () => {
-  const { handleDirectCall, handleCallbackRequest } = useConversionTracking();
+  const { handleDirectCall, handleCallbackRequest, initializeTracking } = useConversionTracking();
+  const { updatePageTitle } = useSEO();
   
+  // Initialize tracking on mount
+  useEffect(() => {
+    const cleanup = initializeTracking();
+    return cleanup;
+  }, [initializeTracking]);
+
   const handleFormSubmit = () => {
     handleDirectCall('form_submission');
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-white">
+    <>
+      {/* SEO Head */}
+      <SEOHead 
+        title="Gas e Power - Confronta e Risparmia su Luce, Gas e Internet | Consulenza Gratuita"
+        description="🔥 Risparmia fino a €300/anno sulla bolletta! Confronta GRATIS le migliori offerte di luce, gas e internet. Consulenza telefonica immediata ☎️ 02 4013 7880"
+        keywords="confronto offerte luce, confronto offerte gas, risparmio bolletta, offerte energia elettrica, gas e power, consulenza energetica gratuita, milano energia"
+        structuredData={generateStructuredData.homepage()}
+      />
+
+      <div className="min-h-screen bg-gradient-to-br from-primary-50 to-white">
       {/* Optimized Header with working callback functionality */}
       <OptimizedHeader 
         onCallNow={() => handleDirectCall('header')} 
@@ -54,6 +73,7 @@ const Index = () => {
         onRequestCallback={handleCallbackRequest}
       />
     </div>
+    </>
   );
 };
 

@@ -1,0 +1,121 @@
+{
+  "name": "Gas e Power - Confronta e Risparmia sulla Bolletta",
+  "short_name": "Gas e Power",
+  "description": "Confronta le migliori offerte di luce, gas e internet. Risparmia fino a €300/anno con la consulenza gratuita di Gas e Power.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#4ade80",
+  "theme_color": "#22c55e",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "it",
+  "dir": "ltr",
+  "categories": ["utilities", "finance", "lifestyle"],
+  "icons": [
+    {
+      "src": "/img/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/img/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/img/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/img/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/img/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/img/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/img/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/img/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Confronto Immediato",
+      "short_name": "Confronta",
+      "description": "Inizia subito il confronto delle offerte",
+      "url": "/#confronto",
+      "icons": [
+        {
+          "src": "/img/icons/shortcut-compare.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Chiama Subito",
+      "short_name": "Chiama",
+      "description": "Contatta i nostri consulenti",
+      "url": "tel:0240137880",
+      "icons": [
+        {
+          "src": "/img/icons/shortcut-call.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Offerte Luce",
+      "short_name": "Luce",
+      "description": "Vedi le migliori offerte luce",
+      "url": "/offerte-luce",
+      "icons": [
+        {
+          "src": "/img/icons/shortcut-luce.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Offerte Gas",
+      "short_name": "Gas",
+      "description": "Vedi le migliori offerte gas",
+      "url": "/offerte-gas",
+      "icons": [
+        {
+          "src": "/img/icons/shortcut-gas.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "tel",
+      "url": "/call-handler?number=%s"
+    }
+  ],
+  "prefer_related_applications": false
+}

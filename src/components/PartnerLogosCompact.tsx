@@ -1,9 +1,20 @@
 import { useState, useEffect } from 'react';
 import { Star, Users, TrendingUp, Phone } from 'lucide-react';
+import { useConversionTracking } from '@/hooks/useConversionTracking';
 
 const PartnerLogosCompact = () => {
   const [hoveredPartner, setHoveredPartner] = useState<number | null>(null);
   const [loadedLogos, setLoadedLogos] = useState<Set<number>>(new Set());
+  const { handleDirectCall } = useConversionTracking();
+
+  // Phone number from other CTAs
+  const phoneNumber = '0240137880';
+
+  // Handle partner CTA click
+  const handlePartnerClick = (partnerName: string) => {
+    console.log(`🎯 Click su partner: ${partnerName}`);
+    handleDirectCall(`partner_${partnerName.toLowerCase()}`);
+  };
 
   // Solo i 4 partner principali - layout ottimizzato
   const partners = [
@@ -131,7 +142,11 @@ const PartnerLogosCompact = () => {
                 </p>
                 
                 {/* CTA Button per ogni partner */}
-                <button className="w-full bg-gray-100 group-hover:bg-green-500 text-gray-700 group-hover:text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 text-sm">
+                <button 
+                  onClick={() => handlePartnerClick(partner.name)}
+                  className="w-full bg-gray-100 group-hover:bg-green-500 text-gray-700 group-hover:text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 text-sm hover:shadow-lg active:scale-95 cursor-pointer"
+                >
+                  <Phone className="h-4 w-4 inline mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                   Scopri Offerte {partner.name}
                 </button>
               </div>
@@ -188,7 +203,10 @@ const PartnerLogosCompact = () => {
               e ti guidano verso il <strong>massimo risparmio possibile</strong> per la tua situazione.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <div className="bg-white/20 backdrop-blur-sm px-8 py-4 rounded-2xl border border-white/20">
+              <button 
+                onClick={() => handleDirectCall('partners_main_cta')}
+                className="bg-white/20 backdrop-blur-sm px-8 py-4 rounded-2xl border border-white/20 hover:bg-white/30 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+              >
                 <div className="flex items-center space-x-3">
                   <Phone className="h-6 w-6" />
                   <div>
@@ -196,7 +214,7 @@ const PartnerLogosCompact = () => {
                     <div className="font-bold text-xl">02 4013 7880</div>
                   </div>
                 </div>
-              </div>
+              </button>
               <div className="text-center">
                 <div className="text-sm opacity-90 mb-1">⏰ Consulenza Gratuita</div>
                 <div className="font-semibold">Lun-Ven 8-21, Sab 9-13</div>
