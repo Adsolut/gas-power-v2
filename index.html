@@ -116,10 +116,6 @@
     fbq('init', 'YOUR_PIXEL_ID');
     fbq('track', 'PageView');
   </script>
-  <noscript>
-    <img height="1" width="1" style="display:none"
-         src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
-  </noscript>
   
   <!-- Microsoft Clarity (optional) -->
   <script type="text/javascript">
@@ -136,6 +132,12 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMLRZS68"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+  
+  <!-- Facebook Pixel (noscript) -->
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+  </noscript>
   
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
