@@ -25,7 +25,18 @@ const PartnerLogos = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6 items-center">
           {partners.map((partner, index) => (
             <div key={index} className="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-              <div className="w-16 h-16 bg-gradient-to-br from-gaspower-green to-gaspower-darkgreen rounded-lg flex items-center justify-center">
+              <img 
+                src={partner.logo} 
+                alt={`${partner.name} logo`}
+                className="w-16 h-16 object-contain"
+                onError={(e) => {
+                  console.error(`Failed to load image: ${partner.logo}`);
+                  // Fallback to text if image fails to load
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.nextElementSibling.style.display = 'flex';
+                }}
+              />
+              <div className="w-16 h-16 bg-gradient-to-br from-gaspower-green to-gaspower-darkgreen rounded-lg items-center justify-center hidden">
                 <span className="text-white font-bold text-xs text-center">{partner.name}</span>
               </div>
             </div>

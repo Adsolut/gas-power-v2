@@ -9,7 +9,7 @@ interface HeroSectionProps {
 
 const HeroSection = ({ onCallNow }: HeroSectionProps) => {
   return (
-    <section className="relative w-full aspect-video flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] lg:h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Carousel */}
       <HeroCarousel />
       

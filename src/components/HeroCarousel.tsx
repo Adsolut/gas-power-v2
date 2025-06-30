@@ -60,11 +60,23 @@ const HeroCarousel = () => {
           {heroImages.map((image, index) => (
             <CarouselItem key={index} className="h-full">
               <div className="relative h-full w-full overflow-hidden">
-                {/* Background Image with 80% Opacity */}
-                <div 
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80"
-                  style={{ backgroundImage: `url(${image.src})` }}
+                {/* Hero Image */}
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="absolute inset-0 w-full h-full object-cover opacity-80"
+                  onLoad={() => {
+                    console.log(`✅ Hero image loaded successfully: ${image.src}`);
+                  }}
+                  onError={(e) => {
+                    console.error(`❌ Failed to load hero image: ${image.src}`);
+                    // Show a gradient background as fallback
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextElementSibling.style.display = 'block';
+                  }}
                 />
+                {/* Fallback gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-green-600 hidden" />
                 {/* Dark overlay for better text readability */}
                 <div className="absolute inset-0 bg-black/30" />
                 
