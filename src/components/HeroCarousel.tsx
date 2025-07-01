@@ -76,9 +76,6 @@ const HeroCarousel = () => {
     setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
   };
 
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-  };
 
   if (!isLoaded) {
     return (
@@ -163,26 +160,7 @@ const HeroCarousel = () => {
         <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
       </button>
 
-      {/* Slide Indicators */}
-      <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-30">
-        {heroImages.map((_, index) => (
-          <button
-            key={index}
-            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 hover:scale-125 ${
-              currentSlide === index 
-                ? 'bg-white scale-125 shadow-lg' 
-                : 'bg-white/50 hover:bg-white/70'
-            }`}
-            onClick={() => goToSlide(index)}
-            aria-label={`Vai all'immagine ${index + 1}: ${heroImages[index].title}`}
-          />
-        ))}
-      </div>
 
-      {/* Slide Counter (Desktop only) */}
-      <div className="hidden sm:block absolute top-4 right-4 bg-black/30 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm z-30">
-        {currentSlide + 1} / {heroImages.length}
-      </div>
 
       {/* Progress Bar */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20 z-30">

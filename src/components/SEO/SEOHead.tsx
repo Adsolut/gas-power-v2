@@ -28,7 +28,7 @@ const SEOHead: React.FC<SEOProps> = ({
   structuredData
 }) => {
   const location = useLocation();
-  const currentUrl = `https://gasepower.it${location.pathname}`;
+  const currentUrl = `https://tuodominio.it${location.pathname}`;
   const canonical = canonicalUrl || currentUrl;
 
   return (

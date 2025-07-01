@@ -1,0 +1,145 @@
+# .htaccess per Gas e Power - React/Vite Deploy su cPanel
+# Configurazione ottimizzata per Apache/cPanel hosting
+
+# Enable mod_rewrite for React Router
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Force HTTPS (decommentare in produzione)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Redirect www to non-www (o viceversa - modifica secondo necessità)
+    # RewriteCond %{HTTP_HOST} ^www\.tuodominio\.it [NC]
+    # RewriteRule ^(.*)$ https://tuodominio.it/$1 [L,R=301]
+    
+    # Handle React Router (SPA) - Tutti i path vanno su index.html
+    RewriteBase /
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.html [L]
+</IfModule>
+
+# Compression for better performance
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# Cache Control for static resources
+<IfModule mod_expires.c>
+    ExpiresActive on
+    
+    # JavaScript e CSS - 1 year
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+    
+    # Immagini - 1 year
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
+    
+    # Font files - 1 year
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    
+    # Documents - 1 month
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType application/json "access plus 1 hour"
+    
+    # HTML - 1 hour (per aggiornamenti frequenti)
+    ExpiresByType text/html "access plus 1 hour"
+    
+    # Manifest e service worker - 1 day
+    ExpiresByType application/manifest+json "access plus 1 day"
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options nosniff
+    
+    # Prevent clickjacking
+    Header always set X-Frame-Options DENY
+    
+    # XSS Protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Permissions Policy
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+    
+    # HSTS (decommentare quando HTTPS è attivo)
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # Cache control per asset statici con hash
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|webp|svg|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
+    
+    # No cache per HTML
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires 0
+    </FilesMatch>
+</IfModule>
+
+# Block access to sensitive files
+<Files ~ "^\.">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files ~ "(package\.json|package-lock\.json|tsconfig\.json|\.env|\.env\.local|\.env\.production|vite\.config\.ts)$">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Block access to source directories
+<IfModule mod_rewrite.c>
+    RewriteRule ^(src|node_modules|dist/.*\.map)/ - [F,L]
+</IfModule>
+
+# Custom error pages (opzionale)
+# ErrorDocument 404 /index.html
+# ErrorDocument 500 /index.html
+
+# MIME types for modern web files
+<IfModule mod_mime.c>
+    AddType application/javascript .js .mjs
+    AddType text/css .css
+    AddType image/svg+xml .svg
+    AddType image/webp .webp
+    AddType image/avif .avif
+    AddType application/manifest+json .webmanifest
+    AddType application/font-woff .woff
+    AddType application/font-woff2 .woff2
+</IfModule>
+
+# Optimize for performance
+<IfModule mod_pagespeed.c>
+    ModPagespeed on
+    ModPagespeedEnableFilters rewrite_css,rewrite_javascript,rewrite_images
+    ModPagespeedEnableFilters collapse_whitespace,remove_comments
+</IfModule>

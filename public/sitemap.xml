@@ -8,18 +8,18 @@
 
   <!-- Homepage - Massima priorità -->
   <url>
-    <loc>https://gasepower.it/</loc>
+    <loc>https://tuodominio.it/</loc>
     <lastmod>2025-06-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <mobile:mobile/>
     <image:image>
-      <image:loc>https://gasepower.it/img/hero/famiglia-risparmio.jpg</image:loc>
+      <image:loc>https://tuodominio.it/img/hero/famiglia-risparmio.jpg</image:loc>
       <image:title>Gas e Power - Risparmio Bolletta Famiglia</image:title>
       <image:caption>Famiglia italiana che risparmia sulla bolletta grazie a Gas e Power</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://gasepower.it/img/social/og-image.jpg</image:loc>
+      <image:loc>https://tuodominio.it/img/social/og-image.jpg</image:loc>
       <image:title>Gas e Power - Confronto Offerte Energetiche</image:title>
       <image:caption>Servizio di comparazione offerte luce, gas e internet</image:caption>
     </image:image>

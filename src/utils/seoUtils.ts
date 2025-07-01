@@ -6,12 +6,12 @@ export const generateStructuredData = {
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://gasepower.it/#organization",
+        "@id": "https://tuodominio.it/#organization",
         "name": "Gas e Power",
-        "url": "https://gasepower.it/",
+        "url": "https://tuodominio.it/",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://gasepower.it/img/logo.png",
+          "url": "https://tuodominio.it/img/logo.png",
           "width": 200,
           "height": 60
         },
@@ -52,26 +52,26 @@ export const generateStructuredData = {
       },
       {
         "@type": "WebSite",
-        "@id": "https://gasepower.it/#website",
-        "url": "https://gasepower.it/",
+        "@id": "https://tuodominio.it/#website",
+        "url": "https://tuodominio.it/",
         "name": "Gas e Power",
         "description": "Confronta e risparmia su luce, gas e internet con Gas e Power",
         "publisher": {
-          "@id": "https://gasepower.it/#organization"
+          "@id": "https://tuodominio.it/#organization"
         },
         "potentialAction": {
           "@type": "SearchAction",
-          "target": "https://gasepower.it/search?q={search_term_string}",
+          "target": "https://tuodominio.it/search?q={search_term_string}",
           "query-input": "required name=search_term_string"
         }
       },
       {
         "@type": "Service",
-        "@id": "https://gasepower.it/#service",
+        "@id": "https://tuodominio.it/#service",
         "name": "Comparazione Offerte Energetiche",
         "description": "Servizio gratuito di confronto tra le migliori offerte di luce, gas e internet disponibili sul mercato italiano",
         "provider": {
-          "@id": "https://gasepower.it/#organization"
+          "@id": "https://tuodominio.it/#organization"
         },
         "areaServed": {
           "@type": "Country",
@@ -86,7 +86,7 @@ export const generateStructuredData = {
       },
       {
         "@type": "FAQPage",
-        "@id": "https://gasepower.it/#faq",
+        "@id": "https://tuodominio.it/#faq",
         "mainEntity": [
           {
             "@type": "Question",
@@ -159,7 +159,7 @@ export const generateStructuredData = {
     "name": "Gas e Power",
     "description": "Servizio di comparazione offerte luce, gas e internet",
     "telephone": "+39-02-4013-7880",
-    "url": "https://gasepower.it/",
+    "url": "https://tuodominio.it/",
     "areaServed": {
       "@type": "Country",
       "name": "Italy"

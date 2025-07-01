@@ -36,7 +36,7 @@ Allow: /manifest.json
 Allow: /sw.js
 
 # Sitemap location
-Sitemap: https://gasepower.it/sitemap.xml
+Sitemap: https://tuodominio.it/sitemap.xml
 
 # Crawl-delay per essere gentili con i server
 Crawl-delay: 1
