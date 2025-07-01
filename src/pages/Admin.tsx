@@ -4,7 +4,7 @@ const Admin = () => {
   // Simple password protection (replace with proper auth in production)
   const checkAccess = () => {
     const password = prompt('Inserisci la password per accedere al dashboard:');
-    return password === 'gaspower2024'; // Change this to your desired password
+    return password === 'gaspower2025'; // Change this to your desired password
   };
 
   if (!checkAccess()) {

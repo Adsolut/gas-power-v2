@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Phone } from 'lucide-react';
 
 interface ProcessStepsProps {
   onCallNow: () => void;
@@ -57,17 +58,20 @@ const ProcessSteps = ({ onCallNow }: ProcessStepsProps) => {
           </div>
         </div>
 
-        <div className="text-center mt-12 bg-white p-8 rounded-lg shadow-lg">
-          <div className="flex items-center justify-center mb-6">
-            <div className="bg-gaspower-blue text-white px-4 py-2 rounded-lg text-2xl font-bold mr-4">
-              Più di 200000
+        <div className="text-center mt-12 bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-6">
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+              <div className="bg-gaspower-blue text-white px-4 py-2 rounded-lg text-lg sm:text-xl md:text-2xl font-bold">
+                Più di 200000
+              </div>
+              <span className="text-base sm:text-lg text-gray-700 text-center sm:text-left">italiani si sono fidati di noi dal 2015</span>
             </div>
-            <span className="text-lg text-gray-700">italiani si sono fidati di noi dal 2015</span>
             <Button 
               onClick={onCallNow}
-              className="ml-6 bg-gaspower-blue hover:bg-blue-600"
+              className="bg-gaspower-blue hover:bg-blue-600 font-bold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg active:scale-95 transition-transform w-full sm:w-auto"
             >
-              📞 02 4013 7880
+              <Phone className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+              📞 Chiama ora!
             </Button>
           </div>
         </div>

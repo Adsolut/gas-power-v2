@@ -152,10 +152,10 @@ const OptimizedFinalCTA = ({ onCallNow, onCallbackRequest }: OptimizedFinalCTAPr
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
               onClick={handleDirectCall} 
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 min-w-[200px]"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-base sm:text-lg md:text-xl px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 w-full sm:w-auto min-w-[250px] sm:min-w-[200px] active:scale-95"
             >
-              <Phone className="h-5 w-5 mr-2" />
-              📞 02 4013 7880
+              <Phone className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3" />
+              📞 Chiama ora!
             </Button>
             
             {/* Callback Dialog */}
@@ -166,7 +166,7 @@ const OptimizedFinalCTA = ({ onCallNow, onCallbackRequest }: OptimizedFinalCTAPr
                   className="bg-white/90 text-blue-600 border-2 border-white hover:bg-white hover:scale-105 font-bold text-lg px-8 py-4 rounded-lg shadow-lg transition-all duration-200 min-w-[200px]"
                 >
                   <MessageCircle className="h-5 w-5 mr-2" />
-                  📞 Ti richiamiamo
+                  📞 Chiamiamo noi!
                 </Button>
               </DialogTrigger>
               

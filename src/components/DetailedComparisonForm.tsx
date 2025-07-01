@@ -189,13 +189,13 @@ const DetailedComparisonForm = ({
               </div>
 
               {/* CTA Button */}
-              <div className="bg-gradient-to-r from-gaspower-blue to-blue-600 p-8 rounded-lg text-center">
-                <h3 className="text-white font-bold text-2xl mb-4">
+              <div className="bg-gradient-to-r from-gaspower-blue to-blue-600 p-4 sm:p-6 md:p-8 rounded-lg text-center">
+                <h3 className="text-white font-bold text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4">
                   Confronta le offerte
                 </h3>
-                <Button type="submit" className="bg-white text-gaspower-blue hover:bg-gray-100 font-bold text-lg px-12 py-4 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200">
-                  <Phone className="h-5 w-5 mr-2" />
-                  Chiama Ora: 02 40137880
+                <Button type="submit" className="bg-white text-gaspower-blue hover:bg-gray-100 font-bold text-base sm:text-lg md:text-xl px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 w-full sm:w-auto active:scale-95">
+                  <Phone className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 mr-2 sm:mr-3" />
+                  Chiama ora!
                 </Button>
               </div>
             </form>

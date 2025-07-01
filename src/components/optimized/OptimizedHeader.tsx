@@ -94,10 +94,10 @@ const OptimizedHeader = ({ onCallNow, onCallbackRequest }: OptimizedHeaderProps)
             {/* Direct Call Button */}
             <Button 
               onClick={handleDirectCall} 
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-3 sm:px-6 py-2 text-sm sm:text-base shadow-lg transform hover:scale-105 transition-all duration-200"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-lg transform hover:scale-105 transition-all duration-200 active:scale-95"
             >
-              <Phone className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-              <span className="hidden xs:inline">02 </span>4013 7880
+              <Phone className="h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3" />
+              Chiama ora!
             </Button>
             
             {/* Callback Button with Dialog */}
@@ -108,7 +108,7 @@ const OptimizedHeader = ({ onCallNow, onCallbackRequest }: OptimizedHeaderProps)
                   className="text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white font-semibold px-3 sm:px-6 py-2 text-sm sm:text-base shadow-md transform hover:scale-105 transition-all duration-200"
                 >
                   <MessageCircle className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                  <span className="hidden sm:inline">Fatti</span> richiamare
+                  Chiamiamo noi!
                 </Button>
               </DialogTrigger>
               
@@ -116,7 +116,7 @@ const OptimizedHeader = ({ onCallNow, onCallbackRequest }: OptimizedHeaderProps)
                 <DialogHeader>
                   <DialogTitle className="flex items-center text-blue-600">
                     <MessageCircle className="h-5 w-5 mr-2" />
-                    Ti richiamiamo gratis!
+                    Chiamiamo noi gratis!
                   </DialogTitle>
                 </DialogHeader>
                 
@@ -126,7 +126,7 @@ const OptimizedHeader = ({ onCallNow, onCallbackRequest }: OptimizedHeaderProps)
                       ✅ Consulenza gratuita e senza impegno
                     </p>
                     <p className="text-sm text-green-700">
-                      ⚡ Ti ricontatteremo entro 15 minuti in orario lavorativo
+                      ⚡ Ti chiamiamo entro 15 minuti in orario lavorativo
                     </p>
                   </div>
                   
@@ -182,7 +182,7 @@ const OptimizedHeader = ({ onCallNow, onCallbackRequest }: OptimizedHeaderProps)
                       ) : (
                         <>
                           <MessageCircle className="h-4 w-4 mr-2" />
-                          Richiedi chiamata
+                          Chiamatemi!
                         </>
                       )}
                     </Button>

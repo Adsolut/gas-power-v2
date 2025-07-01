@@ -62,9 +62,9 @@ const Footer = ({ onCallNow }: FooterProps) => {
                 <Phone className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-gaspower-blue" />
                 <button 
                   onClick={onCallNow}
-                  className="hover:text-gaspower-green transition-colors font-semibold hover:drop-shadow-lg"
+                  className="hover:text-gaspower-green transition-colors font-semibold hover:drop-shadow-lg active:scale-95 transition-transform"
                 >
-                  02 4013 7880
+                  Chiama ora!
                 </button>
               </li>
               <li className="text-gray-400">Lun-Ven: 8:00-21:00</li>
@@ -77,7 +77,12 @@ const Footer = ({ onCallNow }: FooterProps) => {
         <Separator className="my-6 sm:my-8 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         
         <div className="text-center text-xs sm:text-sm text-gray-400 bg-white/5 backdrop-blur-sm rounded-lg p-4 shadow-lg border border-white/10">
-          <p>&copy; 2024 Gas & Power. Tutti i diritti riservati.</p>
+          <div className="mb-3">
+            <p className="font-semibold text-gray-300 mb-1">GAS & POWER RETAIL S.R.L.</p>
+            <p>Via A. Gramsci 17/B, Napoli 80122</p>
+            <p>P.IVA: IT09909151210</p>
+          </div>
+          <p>&copy; 2025 Gas & Power. Tutti i diritti riservati.</p>
           <a 
             href="/dashboard" 
             className="text-gray-600 hover:text-gray-400 text-xs opacity-50 hover:opacity-100 transition-all"

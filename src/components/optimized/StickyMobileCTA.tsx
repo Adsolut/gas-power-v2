@@ -166,10 +166,10 @@ const StickyMobileCTA = ({
               <div className="grid grid-cols-2 gap-3">
                 <Button 
                   onClick={handleDirectCall}
-                  className="bg-blue-600 hover:bg-blue-700 font-bold py-3 shadow-lg"
+                  className="bg-blue-600 hover:bg-blue-700 font-bold py-3 px-4 shadow-lg active:scale-95 transition-transform"
                 >
                   <Phone className="h-4 w-4 mr-2" />
-                  Chiama Ora
+                  Chiama ora!
                 </Button>
                 <Button 
                   onClick={() => setShowCallbackForm(true)}
@@ -177,7 +177,7 @@ const StickyMobileCTA = ({
                   className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-bold py-3"
                 >
                   <MessageCircle className="h-4 w-4 mr-2" />
-                  Ti richiamiamo
+                  Chiamiamo noi!
                 </Button>
               </div>
               

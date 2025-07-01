@@ -32,7 +32,7 @@ const FinalCTA = ({ onCallNow }: FinalCTAProps) => {
               variant="outline"
               className="bg-white text-gaspower-blue border-2 border-white hover:bg-gray-100 font-bold text-lg px-8 py-4 rounded-lg"
             >
-              📞 Ti richiamiamo
+              📞 Chiamiamo noi!
             </Button>
           </div>
         </div>

@@ -205,13 +205,13 @@ const PartnerLogosCompact = () => {
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <button 
                 onClick={() => handleDirectCall('partners_main_cta')}
-                className="bg-white/20 backdrop-blur-sm px-8 py-4 rounded-2xl border border-white/20 hover:bg-white/30 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+                className="bg-white/20 backdrop-blur-sm px-6 sm:px-8 md:px-10 py-4 sm:py-5 rounded-2xl border border-white/20 hover:bg-white/30 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer w-full sm:w-auto"
               >
-                <div className="flex items-center space-x-3">
-                  <Phone className="h-6 w-6" />
-                  <div>
-                    <div className="text-sm opacity-90">📞 Chiama ora:</div>
-                    <div className="font-bold text-xl">02 4013 7880</div>
+                <div className="flex items-center justify-center space-x-3">
+                  <Phone className="h-5 w-5 sm:h-6 sm:w-6" />
+                  <div className="text-center sm:text-left">
+                    <div className="text-sm sm:text-base opacity-90">📞 Chiama ora!</div>
+                    <div className="font-bold text-lg sm:text-xl hidden sm:block">Consulenza gratuita</div>
                   </div>
                 </div>
               </button>
