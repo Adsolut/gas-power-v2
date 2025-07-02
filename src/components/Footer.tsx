@@ -83,13 +83,29 @@ const Footer = ({ onCallNow }: FooterProps) => {
             <p>P.IVA: IT09909151210</p>
           </div>
           <p>&copy; 2025 Gas & Power. Tutti i diritti riservati.</p>
-          <a 
-            href="/dashboard" 
-            className="text-gray-600 hover:text-gray-400 text-xs opacity-50 hover:opacity-100 transition-all"
-            title="Dashboard Admin"
-          >
-            .
-          </a>
+          <div className="mt-2 flex justify-center space-x-4 text-xs">
+            <a 
+              href="https://www.iubenda.com/privacy-policy/16875469" 
+              className="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe text-gray-400 hover:text-gray-300 transition-colors underline" 
+              title="Privacy Policy"
+            >
+              Privacy Policy
+            </a>
+            <a 
+              href="https://www.iubenda.com/privacy-policy/16875469/cookie-policy" 
+              className="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe text-gray-400 hover:text-gray-300 transition-colors underline" 
+              title="Cookie Policy"
+            >
+              Cookie Policy
+            </a>
+            <a 
+              href="/dashboard" 
+              className="text-gray-600 hover:text-gray-400 opacity-50 hover:opacity-100 transition-all"
+              title="Dashboard Admin"
+            >
+              .
+            </a>
+          </div>
         </div>
       </div>
     </footer>

@@ -31,9 +31,9 @@ const DetailedComparisonForm = ({
     onSubmit();
   };
   return (
-    <section className="py-12 md:py-16 bg-white">
+    <section className="py-8 md:py-12 lg:py-16 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Comparatore luce e gas: confronta le tariffe</h2>
           <p className="text-lg text-gray-600 px-4">
             Compilando il form con i dati della bolletta confronti le offerte in base ai tuoi consumi. 
@@ -50,23 +50,23 @@ const DetailedComparisonForm = ({
               Le tue utenze
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-8">
-            <form onSubmit={handleFormSubmit} className="space-y-8">
+          <CardContent className="p-4 md:p-6 lg:p-8">
+            <form onSubmit={handleFormSubmit} className="space-y-4 md:space-y-6">
               
               {/* Utility Type Selection */}
               <div>
-                <Label className="text-lg font-semibold mb-4 block">
+                <Label className="text-lg font-semibold mb-3 md:mb-4 block">
                   Che tipo di offerta vuoi confrontare?
                 </Label>
                 <div className="grid md:grid-cols-3 gap-4">
-                  <Button type="button" variant={utilityType === 'electricity' ? 'default' : 'outline'} onClick={() => setUtilityType('electricity')} className="p-6 h-auto text-base">
+                  <Button type="button" variant={utilityType === 'electricity' ? 'default' : 'outline'} onClick={() => setUtilityType('electricity')} className="p-4 md:p-6 h-auto text-base">
                     <Zap className="h-5 w-5 mr-2" />
                     Luce
                   </Button>
-                  <Button type="button" variant={utilityType === 'gas' ? 'default' : 'outline'} onClick={() => setUtilityType('gas')} className="p-6 h-auto text-base">
+                  <Button type="button" variant={utilityType === 'gas' ? 'default' : 'outline'} onClick={() => setUtilityType('gas')} className="p-4 md:p-6 h-auto text-base">
                     🔥 Gas
                   </Button>
-                  <Button type="button" variant={utilityType === 'both' ? 'default' : 'outline'} onClick={() => setUtilityType('both')} className="p-6 h-auto bg-gaspower-blue hover:bg-blue-600 text-base">
+                  <Button type="button" variant={utilityType === 'both' ? 'default' : 'outline'} onClick={() => setUtilityType('both')} className="p-4 md:p-6 h-auto bg-gaspower-blue hover:bg-blue-600 text-base">
                     <Zap className="h-5 w-5 mr-2" />
                     Luce e gas
                   </Button>
@@ -76,26 +76,26 @@ const DetailedComparisonForm = ({
               <Separator />
 
               {/* Knowledge and Residency */}
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                 <div>
-                  <Label className="font-semibold mb-4 block text-base">Conosci i tuoi consumi?</Label>
+                  <Label className="font-semibold mb-2 md:mb-3 block text-base">Conosci i tuoi consumi?</Label>
                   <div className="grid grid-cols-2 gap-4">
-                    <Button type="button" variant={currentKnowledge === 'yes' ? 'default' : 'outline'} onClick={() => setCurrentKnowledge('yes')} className="p-4">
+                    <Button type="button" variant={currentKnowledge === 'yes' ? 'default' : 'outline'} onClick={() => setCurrentKnowledge('yes')} className="p-3 md:p-4">
                       Sì
                     </Button>
-                    <Button type="button" variant={currentKnowledge === 'no' ? 'default' : 'outline'} onClick={() => setCurrentKnowledge('no')} className="p-4">
+                    <Button type="button" variant={currentKnowledge === 'no' ? 'default' : 'outline'} onClick={() => setCurrentKnowledge('no')} className="p-3 md:p-4">
                       No
                     </Button>
                   </div>
                 </div>
                 
                 <div>
-                  <Label className="font-semibold mb-4 block text-base">Sei residente?</Label>
+                  <Label className="font-semibold mb-2 md:mb-3 block text-base">Sei residente?</Label>
                   <div className="grid grid-cols-2 gap-4">
-                    <Button type="button" variant={isResident === 'yes' ? 'default' : 'outline'} onClick={() => setIsResident('yes')} className="p-4">
+                    <Button type="button" variant={isResident === 'yes' ? 'default' : 'outline'} onClick={() => setIsResident('yes')} className="p-3 md:p-4">
                       Sì
                     </Button>
-                    <Button type="button" variant={isResident === 'no' ? 'default' : 'outline'} onClick={() => setIsResident('no')} className="p-4">
+                    <Button type="button" variant={isResident === 'no' ? 'default' : 'outline'} onClick={() => setIsResident('no')} className="p-3 md:p-4">
                       No
                     </Button>
                   </div>
@@ -105,12 +105,12 @@ const DetailedComparisonForm = ({
               <Separator />
 
               {/* Home Consumption Section */}
-              <div className="bg-gradient-to-r from-blue-50 to-green-50 p-6 rounded-lg">
-                <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+              <div className="bg-gradient-to-r from-blue-50 to-green-50 p-4 md:p-6 rounded-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-4 md:mb-6 flex items-center">
                   🏠 Il tuo consumo
                 </h3>
                 
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
                   <div>
                     <Label htmlFor="homeSize" className="font-semibold text-red-600">* Quant'è grande la tua abitazione?</Label>
                     <div className="flex mt-2">
@@ -135,54 +135,54 @@ const DetailedComparisonForm = ({
                 </div>
 
                 {/* Energy Usage Types */}
-                <div className="space-y-6">
+                <div className="space-y-4 md:space-y-6">
                   <div>
-                    <Label className="font-semibold mb-3 block">Qual è l'energia utilizzata per il riscaldamento:</Label>
+                    <Label className="font-semibold mb-2 md:mb-3 block">Qual è l'energia utilizzata per il riscaldamento:</Label>
                     <div className="grid md:grid-cols-3 gap-4">
-                      <Button type="button" variant={heatingType === 'electricity' ? 'default' : 'outline'} onClick={() => setHeatingType('electricity')} className="p-4">
+                      <Button type="button" variant={heatingType === 'electricity' ? 'default' : 'outline'} onClick={() => setHeatingType('electricity')} className="p-3 md:p-4">
                         Luce
                       </Button>
-                      <Button type="button" variant={heatingType === 'gas' ? 'default' : 'outline'} onClick={() => setHeatingType('gas')} className="p-4">
+                      <Button type="button" variant={heatingType === 'gas' ? 'default' : 'outline'} onClick={() => setHeatingType('gas')} className="p-3 md:p-4">
                         Gas
                       </Button>
-                      <Button type="button" variant={heatingType === 'other' ? 'default' : 'outline'} onClick={() => setHeatingType('other')} className="p-4">
+                      <Button type="button" variant={heatingType === 'other' ? 'default' : 'outline'} onClick={() => setHeatingType('other')} className="p-3 md:p-4">
                         Altro
                       </Button>
                     </div>
                   </div>
 
                   <div>
-                    <Label className="font-semibold mb-3 block">Qual è l'energia utilizzata per l'acqua calda sanitaria:</Label>
+                    <Label className="font-semibold mb-2 md:mb-3 block">Qual è l'energia utilizzata per l'acqua calda sanitaria:</Label>
                     <div className="grid md:grid-cols-3 gap-4">
-                      <Button type="button" variant={hotWaterType === 'electricity' ? 'default' : 'outline'} onClick={() => setHotWaterType('electricity')} className="p-4">
+                      <Button type="button" variant={hotWaterType === 'electricity' ? 'default' : 'outline'} onClick={() => setHotWaterType('electricity')} className="p-3 md:p-4">
                         Luce
                       </Button>
-                      <Button type="button" variant={hotWaterType === 'gas' ? 'default' : 'outline'} onClick={() => setHotWaterType('gas')} className="p-4">
+                      <Button type="button" variant={hotWaterType === 'gas' ? 'default' : 'outline'} onClick={() => setHotWaterType('gas')} className="p-3 md:p-4">
                         Gas
                       </Button>
-                      <Button type="button" variant={hotWaterType === 'other' ? 'default' : 'outline'} onClick={() => setHotWaterType('other')} className="p-4">
+                      <Button type="button" variant={hotWaterType === 'other' ? 'default' : 'outline'} onClick={() => setHotWaterType('other')} className="p-3 md:p-4">
                         Altro
                       </Button>
                     </div>
                   </div>
 
                   <div>
-                    <Label className="font-semibold mb-3 block">Qual è l'energia utilizzata per la cucina:</Label>
+                    <Label className="font-semibold mb-2 md:mb-3 block">Qual è l'energia utilizzata per la cucina:</Label>
                     <div className="grid md:grid-cols-3 gap-4">
-                      <Button type="button" variant={cookingType === 'electricity' ? 'default' : 'outline'} onClick={() => setCookingType('electricity')} className="p-4">
+                      <Button type="button" variant={cookingType === 'electricity' ? 'default' : 'outline'} onClick={() => setCookingType('electricity')} className="p-3 md:p-4">
                         Luce
                       </Button>
-                      <Button type="button" variant={cookingType === 'gas' ? 'default' : 'outline'} onClick={() => setCookingType('gas')} className="p-4">
+                      <Button type="button" variant={cookingType === 'gas' ? 'default' : 'outline'} onClick={() => setCookingType('gas')} className="p-3 md:p-4">
                         Gas
                       </Button>
-                      <Button type="button" variant={cookingType === 'other' ? 'default' : 'outline'} onClick={() => setCookingType('other')} className="p-4">
+                      <Button type="button" variant={cookingType === 'other' ? 'default' : 'outline'} onClick={() => setCookingType('other')} className="p-3 md:p-4">
                         Altro
                       </Button>
                     </div>
                   </div>
                 </div>
 
-                <Separator className="my-6" />
+                <Separator className="my-4 md:my-6" />
 
                 {/* Appliances */}
                 <ApplianceSelector title="* I tuoi elettrodomestici" appliances={appliances} selectedAppliances={selectedAppliances} onSelectionChange={setSelectedAppliances} />

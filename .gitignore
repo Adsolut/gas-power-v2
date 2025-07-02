@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Deploy files (contengono credenziali sensibili)
+ftp-config.txt
+*.zip
+deploy-*.zip
+
+# Backup files
+*.bak

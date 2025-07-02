@@ -10,9 +10,12 @@ const PartnerLogosCompact = () => {
   // Phone number from other CTAs
   const phoneNumber = '0240137880';
 
-  // Handle partner CTA click
+  // Handle partner CTA click - triggers direct phone call
   const handlePartnerClick = (partnerName: string) => {
-    console.log(`🎯 Click su partner: ${partnerName}`);
+    console.log(`🎯 Click su partner: ${partnerName} - Chiamata diretta`);
+    // Trigger phone call
+    window.location.href = `tel:${phoneNumber}`;
+    // Also track the conversion
     handleDirectCall(`partner_${partnerName.toLowerCase()}`);
   };
 
@@ -108,6 +111,7 @@ const PartnerLogosCompact = () => {
               }`}
               onMouseEnter={() => setHoveredPartner(index)}
               onMouseLeave={() => setHoveredPartner(null)}
+              onClick={() => handlePartnerClick(partner.name)}
             >
               {/* Market Share Badge */}
               <div className="absolute -top-3 -right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
@@ -141,14 +145,12 @@ const PartnerLogosCompact = () => {
                   {partner.description}
                 </p>
                 
-                {/* CTA Button per ogni partner */}
-                <button 
-                  onClick={() => handlePartnerClick(partner.name)}
-                  className="w-full bg-gray-100 group-hover:bg-green-500 text-gray-700 group-hover:text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 text-sm hover:shadow-lg active:scale-95 cursor-pointer"
-                >
+                {/* CTA Indicator */}
+                <div className="w-full bg-gray-100 group-hover:bg-green-500 text-gray-700 group-hover:text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 text-sm text-center pointer-events-none">
                   <Phone className="h-4 w-4 inline mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  Scopri Offerte {partner.name}
-                </button>
+                  <span className="group-hover:hidden">Clicca per Offerte</span>
+                  <span className="hidden group-hover:inline">Chiama ora!</span>
+                </div>
               </div>
 
               {/* Animated Background */}
