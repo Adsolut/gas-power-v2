@@ -8,7 +8,7 @@ const ReviewsSection = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
-            I clienti soddisfatti di Selectra
+            I clienti soddisfatti di Gas & Power
           </h2>
           <div className="flex items-center justify-center space-x-8 mb-4">
             <div className="text-center">

@@ -17,7 +17,7 @@ export class GTMManager {
     }
   }
 
-  // Conversion events for Gas e Power - OTTIMIZZATO PER GOOGLE ADS
+  // Conversion events for Gas & Power - OTTIMIZZATO PER GOOGLE ADS
   static trackConversion(action: string, source: string, value?: number, metadata?: Record<string, any>) {
     // Standard GTM event
     this.push({
@@ -129,9 +129,9 @@ export class GTMManager {
       lead_quality: leadData.leadScore,
       items: [{
         item_id: `lead_${leadSource}_${Date.now()}`,
-        item_name: `Gas e Power Lead - ${leadSource}`,
+        item_name: `Gas & Power Lead - ${leadSource}`,
         item_category: 'energy_comparison',
-        item_brand: 'Gas e Power',
+        item_brand: 'Gas & Power',
         price: leadValue,
         quantity: 1
       }]

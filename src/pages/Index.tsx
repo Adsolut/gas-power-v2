@@ -36,9 +36,9 @@ const Index = () => {
     <>
       {/* SEO Head */}
       <SEOHead 
-        title="Gas e Power - Confronta e Risparmia su Luce, Gas e Internet | Consulenza Gratuita"
+        title="Gas & Power - Confronta e Risparmia su Luce, Gas e Internet | Consulenza Gratuita"
         description="🔥 Risparmia fino a €300/anno sulla bolletta! Confronta GRATIS le migliori offerte di luce, gas e internet. Consulenza telefonica immediata ☎️ +39 02 4013 7880"
-        keywords="confronto offerte luce, confronto offerte gas, risparmio bolletta, offerte energia elettrica, gas e power, consulenza energetica gratuita, milano energia"
+        keywords="confronto offerte luce, confronto offerte gas, risparmio bolletta, offerte energia elettrica, gas & power, consulenza energetica gratuita, milano energia"
         structuredData={generateStructuredData.homepage()}
       />
 
