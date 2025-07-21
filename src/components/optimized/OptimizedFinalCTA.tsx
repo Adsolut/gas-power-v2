@@ -150,13 +150,14 @@ const OptimizedFinalCTA = ({ onCallNow, onCallbackRequest }: OptimizedFinalCTAPr
           
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
+            <a
+              href="tel:+390240137880"
               onClick={handleDirectCall} 
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-base sm:text-lg md:text-xl px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 w-full sm:w-auto min-w-[250px] sm:min-w-[200px] active:scale-95"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-base sm:text-lg md:text-xl px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 w-full sm:w-auto min-w-[250px] sm:min-w-[200px] active:scale-95 inline-flex items-center justify-center no-underline text-center"
             >
               <Phone className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3" />
               📞 Chiama ora!
-            </Button>
+            </a>
             
             {/* Callback Dialog */}
             <Dialog open={isCallbackOpen} onOpenChange={setIsCallbackOpen}>

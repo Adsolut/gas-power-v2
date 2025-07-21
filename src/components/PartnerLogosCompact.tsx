@@ -8,7 +8,7 @@ const PartnerLogosCompact = () => {
   const { handleDirectCall } = useConversionTracking();
 
   // Phone number from other CTAs
-  const phoneNumber = '0240137880';
+  const phoneNumber = '+390240137880';
 
   // Handle partner CTA click - triggers direct phone call
   const handlePartnerClick = (partnerName: string) => {
@@ -104,9 +104,10 @@ const PartnerLogosCompact = () => {
         {/* Main Partners Grid - Optimized for 4 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {partners.map((partner, index) => (
-            <div
+            <a
+              href={`tel:${phoneNumber}`}
               key={index}
-              className={`group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 hover:border-green-300 cursor-pointer transform hover:scale-105 hover:-translate-y-2 ${
+              className={`group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 hover:border-green-300 cursor-pointer transform hover:scale-105 hover:-translate-y-2 block no-underline text-inherit ${
                 hoveredPartner === index ? 'ring-4 ring-green-500 ring-offset-4 shadow-2xl' : ''
               }`}
               onMouseEnter={() => setHoveredPartner(index)}
@@ -160,7 +161,7 @@ const PartnerLogosCompact = () => {
               {hoveredPartner === index && (
                 <div className="absolute -inset-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-3xl opacity-20 blur-xl transition-opacity duration-500" />
               )}
-            </div>
+            </a>
           ))}
         </div>
 
@@ -205,9 +206,10 @@ const PartnerLogosCompact = () => {
               e ti guidano verso il <strong>massimo risparmio possibile</strong> per la tua situazione.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <button 
+              <a 
+                href={`tel:${phoneNumber}`}
                 onClick={() => handleDirectCall('partners_main_cta')}
-                className="bg-white/20 backdrop-blur-sm px-6 sm:px-8 md:px-10 py-4 sm:py-5 rounded-2xl border border-white/20 hover:bg-white/30 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer w-full sm:w-auto"
+                className="bg-white/20 backdrop-blur-sm px-6 sm:px-8 md:px-10 py-4 sm:py-5 rounded-2xl border border-white/20 hover:bg-white/30 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer w-full sm:w-auto inline-block text-white no-underline"
               >
                 <div className="flex items-center justify-center space-x-3">
                   <Phone className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -216,7 +218,7 @@ const PartnerLogosCompact = () => {
                     <div className="font-bold text-lg sm:text-xl hidden sm:block">Consulenza gratuita</div>
                   </div>
                 </div>
-              </button>
+              </a>
               <div className="text-center">
                 <div className="text-sm opacity-90 mb-1">⏰ Consulenza Gratuita</div>
                 <div className="font-semibold">Lun-Ven 8-21, Sab 9-13</div>

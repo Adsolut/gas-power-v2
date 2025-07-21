@@ -11,7 +11,7 @@ interface StickyMobileCTAProps {
 }
 
 const StickyMobileCTA = ({ 
-  phoneNumber = '0240137880',
+  phoneNumber = '+390240137880',
   onDirectCall,
   onRequestCallback,
   className 
@@ -164,13 +164,14 @@ const StickyMobileCTA = ({
               </div>
               
               <div className="grid grid-cols-2 gap-3">
-                <Button 
+                <a
+                  href={`tel:${phoneNumber}`}
                   onClick={handleDirectCall}
-                  className="bg-blue-600 hover:bg-blue-700 font-bold py-3 px-4 shadow-lg active:scale-95 transition-transform"
+                  className="bg-blue-600 hover:bg-blue-700 font-bold py-3 px-4 shadow-lg active:scale-95 transition-transform inline-flex items-center justify-center rounded-md text-white no-underline"
                 >
                   <Phone className="h-4 w-4 mr-2" />
                   Chiama ora!
-                </Button>
+                </a>
                 <Button 
                   onClick={() => setShowCallbackForm(true)}
                   variant="outline"

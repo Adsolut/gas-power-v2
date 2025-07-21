@@ -92,13 +92,14 @@ const OptimizedHeader = ({ onCallNow, onCallbackRequest }: OptimizedHeaderProps)
           <div className="flex items-center space-x-2 sm:space-x-3">
             
             {/* Direct Call Button */}
-            <Button 
+            <a
+              href="tel:+390240137880"
               onClick={handleDirectCall} 
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-lg transform hover:scale-105 transition-all duration-200 active:scale-95"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-lg transform hover:scale-105 transition-all duration-200 active:scale-95 inline-flex items-center rounded-md no-underline"
             >
               <Phone className="h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3" />
               Chiama ora!
-            </Button>
+            </a>
             
             {/* Callback Button with Dialog */}
             <Dialog open={isCallbackOpen} onOpenChange={setIsCallbackOpen}>

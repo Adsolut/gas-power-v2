@@ -64,7 +64,7 @@ export const useConversionTracking = () => {
     // Console logging for development
     console.log(`[GAS E POWER TRACKING] ${event.action}:`, enhancedEvent);
     
-    // GTM Integration
+    // NUOVO: GTM Integration ottimizzato per Google Ads
     GTMManager.trackConversion(event.action, event.source, event.value, event.metadata);
     
     // Google Analytics 4 Enhanced Events
@@ -102,7 +102,7 @@ export const useConversionTracking = () => {
   }, [getUTMParameters]);
 
   // Handle direct calls with enhanced tracking
-  const handleDirectCall = useCallback((source: string, phoneNumber: string = '0240137880') => {
+  const handleDirectCall = useCallback((source: string, phoneNumber: string = '+390240137880') => {
     const callValue = getCallValue(source);
     
     trackEvent({
@@ -257,7 +257,18 @@ export const useConversionTracking = () => {
     trackEvent,
     handleDirectCall,
     handleCallbackRequest,
-    initializeTracking
+    initializeTracking,
+    // NUOVO: Debug functions
+    debugTracking: () => GTMManager.debugTracking(),
+    testConversion: (source: string = 'debug_test') => {
+      console.log('🧪 [DEBUG] Testing conversion tracking...');
+      trackEvent({
+        action: 'click_to_call',
+        source,
+        value: 999,
+        metadata: { test: true, timestamp: new Date().toISOString() }
+      });
+    }
   };
 };
 

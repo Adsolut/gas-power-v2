@@ -67,13 +67,14 @@ const HeroSection = ({ onCallNow }: HeroSectionProps) => {
 
             {/* Main CTA - Moved after Trust Indicators */}
             <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 justify-center items-center animate-scale-in" style={{ animationDelay: '0.6s' }}>
-              <Button 
+              <a
+                href="tel:+390240137880"
                 onClick={onCallNow} 
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 rounded-lg sm:rounded-xl shadow-2xl transform hover:scale-105 transition-all duration-300 w-full sm:w-auto max-w-xs sm:max-w-none border-2 border-white/20 active:scale-95"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 rounded-lg sm:rounded-xl shadow-2xl transform hover:scale-105 transition-all duration-300 w-full sm:w-auto max-w-xs sm:max-w-none border-2 border-white/20 active:scale-95 inline-flex items-center justify-center no-underline"
               >
                 <Phone className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 mr-2 sm:mr-3" />
                 Chiama ora!
-              </Button>
+              </a>
               <p className="text-xs sm:text-sm md:text-base text-white/90 drop-shadow-lg text-center px-1 sm:px-2 font-medium leading-tight">
                 ⏰ Consulenza gratuita dal lunedì al venerdì 8-21, sabato 9-13
               </p>

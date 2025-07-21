@@ -60,12 +60,13 @@ const Footer = ({ onCallNow }: FooterProps) => {
             <ul className="space-y-2 text-xs sm:text-sm text-gray-300">
               <li className="flex items-center">
                 <Phone className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-gaspower-blue" />
-                <button 
+                <a 
+                  href="tel:+390240137880"
                   onClick={onCallNow}
-                  className="hover:text-gaspower-green transition-colors font-semibold hover:drop-shadow-lg active:scale-95 transition-transform"
+                  className="hover:text-gaspower-green transition-colors font-semibold hover:drop-shadow-lg active:scale-95 transition-transform no-underline"
                 >
                   Chiama ora!
-                </button>
+                </a>
               </li>
               <li className="text-gray-400">Lun-Ven: 8:00-21:00</li>
               <li className="text-gray-400">Sab: 9:00-13:00</li>

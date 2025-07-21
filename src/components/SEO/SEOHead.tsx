@@ -17,7 +17,7 @@ interface SEOProps {
 
 const SEOHead: React.FC<SEOProps> = ({
   title = "Gas e Power - Confronta e Risparmia su Luce, Gas e Internet | Consulenza Gratuita",
-  description = "🔥 Risparmia fino a €300/anno sulla bolletta! Confronta GRATIS le migliori offerte di luce, gas e internet. Consulenza telefonica immediata ☎️ 02 4013 7880",
+  description = "🔥 Risparmia fino a €300/anno sulla bolletta! Confronta GRATIS le migliori offerte di luce, gas e internet. Consulenza telefonica immediata ☎️ +39 02 4013 7880",
   keywords = "confronto offerte luce, confronto offerte gas, risparmio bolletta, offerte energia elettrica, offerte gas metano, cambio fornitore energia, consulenza energetica gratuita",
   image = "https://gasepower.it/img/social/og-image.jpg",
   type = "website",
