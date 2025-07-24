@@ -8,7 +8,7 @@ const PartnerLogosCompact = () => {
   const { handleDirectCall } = useConversionTracking();
 
   // Phone number from other CTAs
-  const phoneNumber = '+390240137880';
+  const phoneNumber = '+390299220697';
 
   // Handle partner CTA click - triggers direct phone call
   const handlePartnerClick = (partnerName: string) => {
@@ -150,7 +150,7 @@ const PartnerLogosCompact = () => {
                 <div className="w-full bg-gray-100 group-hover:bg-green-500 text-gray-700 group-hover:text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 text-sm text-center pointer-events-none">
                   <Phone className="h-4 w-4 inline mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                   <span className="group-hover:hidden">Clicca per Offerte</span>
-                  <span className="hidden group-hover:inline">Chiama ora!</span>
+                  <span className="hidden group-hover:inline">0299220697</span>
                 </div>
               </div>
 
@@ -214,7 +214,7 @@ const PartnerLogosCompact = () => {
                 <div className="flex items-center justify-center space-x-3">
                   <Phone className="h-5 w-5 sm:h-6 sm:w-6" />
                   <div className="text-center sm:text-left">
-                    <div className="text-sm sm:text-base opacity-90">📞 Chiama ora!</div>
+                    <div className="text-sm sm:text-base opacity-90">📞 0299220697</div>
                     <div className="font-bold text-lg sm:text-xl hidden sm:block">Consulenza gratuita</div>
                   </div>
                 </div>

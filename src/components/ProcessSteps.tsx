@@ -67,12 +67,12 @@ const ProcessSteps = ({ onCallNow }: ProcessStepsProps) => {
               <span className="text-base sm:text-lg text-gray-700 text-center sm:text-left">italiani si sono fidati di noi dal 2015</span>
             </div>
             <a
-              href="tel:+390240137880"
+              href="tel:+390299220697"
               onClick={onCallNow}
               className="bg-gaspower-blue hover:bg-blue-600 font-bold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg active:scale-95 transition-transform w-full sm:w-auto inline-flex items-center justify-center rounded-md text-white no-underline"
             >
               <Phone className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-              📞 Chiama ora!
+              📞 0299220697
             </a>
           </div>
         </div>

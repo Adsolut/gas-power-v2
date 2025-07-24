@@ -11,7 +11,7 @@ interface StickyMobileCTAProps {
 }
 
 const StickyMobileCTA = ({ 
-  phoneNumber = '+390240137880',
+  phoneNumber = '+390299220697',
   onDirectCall,
   onRequestCallback,
   className 
@@ -170,7 +170,7 @@ const StickyMobileCTA = ({
                   className="bg-blue-600 hover:bg-blue-700 font-bold py-3 px-4 shadow-lg active:scale-95 transition-transform inline-flex items-center justify-center rounded-md text-white no-underline"
                 >
                   <Phone className="h-4 w-4 mr-2" />
-                  Chiama ora!
+                  0299220697
                 </a>
                 <Button 
                   onClick={() => setShowCallbackForm(true)}

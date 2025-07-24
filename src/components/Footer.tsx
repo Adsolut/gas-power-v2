@@ -61,11 +61,11 @@ const Footer = ({ onCallNow }: FooterProps) => {
               <li className="flex items-center">
                 <Phone className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-gaspower-blue" />
                 <a 
-                  href="tel:+390240137880"
+                  href="tel:+390299220697"
                   onClick={onCallNow}
                   className="hover:text-gaspower-green transition-colors font-semibold hover:drop-shadow-lg active:scale-95 transition-transform no-underline"
                 >
-                  Chiama ora!
+                  +390299220697
                 </a>
               </li>
               <li className="text-gray-400">Lun-Ven: 8:00-21:00</li>
@@ -92,13 +92,13 @@ const Footer = ({ onCallNow }: FooterProps) => {
             >
               Privacy Policy
             </a>
-            <a 
+            {/* <a 
               href="https://www.iubenda.com/privacy-policy/16875469/cookie-policy" 
               className="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe text-gray-400 hover:text-gray-300 transition-colors underline" 
               title="Cookie Policy"
             >
               Cookie Policy
-            </a>
+            </a> */}
             <a 
               href="/dashboard" 
               className="text-gray-600 hover:text-gray-400 opacity-50 hover:opacity-100 transition-all"

@@ -194,7 +194,7 @@ const DetailedComparisonForm = ({
                   Confronta le offerte
                 </h3>
                 <a
-                  href="tel:+390240137880"
+                  href="tel:+390299220697"
                   onClick={(e) => {
                     e.preventDefault();
                     onSubmit();
@@ -202,7 +202,7 @@ const DetailedComparisonForm = ({
                   className="bg-white text-gaspower-blue hover:bg-gray-100 font-bold text-base sm:text-lg md:text-xl px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 w-full sm:w-auto active:scale-95 inline-flex items-center justify-center no-underline"
                 >
                   <Phone className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 mr-2 sm:mr-3" />
-                  Chiama ora!
+                  0299220697
                 </a>
               </div>
             </form>

@@ -93,12 +93,12 @@ const OptimizedHeader = ({ onCallNow, onCallbackRequest }: OptimizedHeaderProps)
             
             {/* Direct Call Button */}
             <a
-              href="tel:+390240137880"
+              href="tel:+390299220697"
               onClick={handleDirectCall} 
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 sm:px-8 py-2 sm:py-3 text-sm sm:text-base shadow-lg transform hover:scale-105 transition-all duration-200 active:scale-95 inline-flex items-center rounded-md no-underline"
             >
               <Phone className="h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3" />
-              Chiama ora!
+              0299220697
             </a>
             
             {/* Callback Button with Dialog */}
