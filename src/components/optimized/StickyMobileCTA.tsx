@@ -3,10 +3,17 @@ import { Phone, MessageCircle, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
+interface CallbackData {
+  name: string;
+  phone: string;
+  preferredTime: string;
+  source?: string;
+}
+
 interface StickyMobileCTAProps {
   phoneNumber?: string;
   onDirectCall?: () => void;
-  onRequestCallback?: (data: any) => void;
+  onRequestCallback?: (data: CallbackData) => void;
   className?: string;
 }
 

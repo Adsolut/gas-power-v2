@@ -16,8 +16,30 @@ interface ConversionDashboardProps {
   isAdmin?: boolean;
 }
 
+interface CallbackRequest {
+  timestamp?: string;
+  source?: string;
+  name?: string;
+  phone?: string;
+  preferredTime?: string;
+}
+
+interface DashboardStats {
+  totalCallbacks: number;
+  todayCallbacks: number;
+  sources: Record<string, number>;
+  timePreferences: Record<string, number>;
+  recentCallbacks: Array<{
+    id: number;
+    name: string;
+    phone: string;
+    time: string;
+    source: string;
+  }>;
+}
+
 const ConversionDashboard = ({ isAdmin = false }: ConversionDashboardProps) => {
-  const [dashboardData, setDashboardData] = useState<any>(null);
+  const [dashboardData, setDashboardData] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,19 +50,19 @@ const ConversionDashboard = ({ isAdmin = false }: ConversionDashboardProps) => {
         const callbackRequests = JSON.parse(localStorage.getItem('callbackRequests') || '[]');
         const today = new Date().toISOString().split('T')[0];
         
-        const todayRequests = callbackRequests.filter((req: any) => 
+        const todayRequests = callbackRequests.filter((req: CallbackRequest) => 
           req.timestamp && req.timestamp.startsWith(today)
         );
         
         const stats = {
           totalCallbacks: callbackRequests.length,
           todayCallbacks: todayRequests.length,
-          sources: callbackRequests.reduce((acc: any, req: any) => {
+          sources: callbackRequests.reduce((acc: Record<string, number>, req: CallbackRequest) => {
             const source = req.source || 'unknown';
             acc[source] = (acc[source] || 0) + 1;
             return acc;
           }, {}),
-          timePreferences: callbackRequests.reduce((acc: any, req: any) => {
+          timePreferences: callbackRequests.reduce((acc: Record<string, number>, req: CallbackRequest) => {
             const time = req.preferredTime || 'unknown';
             acc[time] = (acc[time] || 0) + 1;
             return acc;
@@ -48,7 +70,7 @@ const ConversionDashboard = ({ isAdmin = false }: ConversionDashboardProps) => {
           recentCallbacks: callbackRequests
             .slice(-10)
             .reverse()
-            .map((req: any, index: number) => ({
+            .map((req: CallbackRequest, index: number) => ({
               id: index,
               name: req.name || 'Anonimo',
               phone: req.phone ? `${req.phone.slice(0, 3)}***${req.phone.slice(-4)}` : 'N/A',
@@ -233,7 +255,7 @@ const ConversionDashboard = ({ isAdmin = false }: ConversionDashboardProps) => {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {dashboardData.recentCallbacks.map((callback: any) => (
+              {dashboardData.recentCallbacks.map((callback) => (
                 <div key={callback.id} className="flex items-center justify-between p-3 border rounded-lg">
                   <div>
                     <h4 className="font-medium">{callback.name}</h4>

@@ -12,9 +12,16 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
+interface CallbackData {
+  name: string;
+  phone: string;
+  preferredTime: string;
+  source?: string;
+}
+
 interface OptimizedHeaderProps {
   onCallNow: () => void;
-  onCallbackRequest?: (data: any) => void;
+  onCallbackRequest?: (data: CallbackData) => void;
 }
 
 const OptimizedHeader = ({ onCallNow, onCallbackRequest }: OptimizedHeaderProps) => {
@@ -84,7 +91,7 @@ const OptimizedHeader = ({ onCallNow, onCallbackRequest }: OptimizedHeaderProps)
           {/* Trust Signal Desktop */}
           <div className="hidden lg:flex items-center text-sm text-gray-600 bg-green-50 px-4 py-2 rounded-lg border border-green-200">
             <Users className="h-4 w-4 mr-2 text-green-600" />
-            <span className="font-semibold text-green-600">200.000+</span>
+            <span className="font-semibold text-green-600">2.000.000+</span>
             <span className="ml-1">clienti soddisfatti dal 2015</span>
           </div>
           
@@ -208,7 +215,7 @@ const OptimizedHeader = ({ onCallNow, onCallbackRequest }: OptimizedHeaderProps)
       
       {/* Mobile Trust Bar */}
       <div className="lg:hidden bg-green-600 text-white px-4 py-2 text-center text-sm font-medium">
-        👥 Oltre 200.000 clienti si sono fidati di noi • Consulenza 100% gratuita
+        👥 Oltre 2.000.000 clienti si sono fidati di noi • Consulenza 100% gratuita
       </div>
     </header>
   );

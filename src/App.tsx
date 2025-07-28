@@ -7,6 +7,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import Index from "./pages/Index";
 import Admin from "./pages/Admin";
 import AdminSimple from "./pages/AdminSimple";
+import AnalyticsV2 from "./pages/AnalyticsV2";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -17,11 +18,12 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename="/v2">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/dashboard" element={<AdminSimple />} />
+            <Route path="/analytics-v2" element={<AnalyticsV2 />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

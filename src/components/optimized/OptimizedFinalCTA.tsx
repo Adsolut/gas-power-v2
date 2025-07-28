@@ -12,9 +12,16 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
+interface CallbackData {
+  name: string;
+  phone: string;
+  preferredTime: string;
+  source?: string;
+}
+
 interface OptimizedFinalCTAProps {
   onCallNow: () => void;
-  onCallbackRequest?: (data: any) => void;
+  onCallbackRequest?: (data: CallbackData) => void;
 }
 
 const OptimizedFinalCTA = ({ onCallNow, onCallbackRequest }: OptimizedFinalCTAProps) => {
@@ -25,7 +32,7 @@ const OptimizedFinalCTA = ({ onCallNow, onCallbackRequest }: OptimizedFinalCTAPr
     preferredTime: 'mattina'
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [onlineUsers] = useState(Math.floor(Math.random() * 15) + 8); // Simula utenti online
+  const [onlineUsers] = useState(Math.floor(Math.random() * 6) + 1); // Simula consulenti disponibili (1-6)
   const [timeLeft, setTimeLeft] = useState(25 * 60); // 25 minuti in secondi
 
   // Countdown timer per urgency
@@ -104,7 +111,7 @@ const OptimizedFinalCTA = ({ onCallNow, onCallbackRequest }: OptimizedFinalCTAPr
             🏆 Il portale Luce e Gas #1 in Italia
           </h2>
           <p className="text-lg sm:text-xl text-white/90 mb-6">
-            Unisciti a oltre <span className="font-bold text-yellow-300">200.000 famiglie</span> che risparmiano con noi
+            Unisciti a oltre <span className="font-bold text-yellow-300">2.000.000 famiglie</span> che risparmiano con noi
           </p>
         </div>
 

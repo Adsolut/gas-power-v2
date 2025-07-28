@@ -1,7 +1,36 @@
 // src/utils/gtmConfig.ts
+
+// Extend Window interface for GTM and GA
+declare global {
+  interface Window {
+    dataLayer: unknown[];
+    gtag: (...args: unknown[]) => void;
+  }
+}
+
+// Define proper types for tracking data
+interface LeadData {
+  name?: string;
+  phone?: string;
+  preferredTime?: string;
+  leadScore?: number;
+}
+
+interface GTMEventMetadata {
+  phoneNumber?: string;
+  clickType?: string;
+  leadScore?: number;
+  hasName?: boolean;
+  phoneLength?: number;
+  preferredTime?: string;
+  test?: boolean;
+  timestamp?: string;
+  [key: string]: unknown;
+}
+
 export interface GTMEvent {
   event: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 // Tracking IDs:
@@ -11,14 +40,14 @@ export interface GTMEvent {
 // Phone Conversion: AW-11559010191/GITxCLHKjegaEI__4Ycr
 export class GTMManager {
   static push(data: GTMEvent) {
-    if (typeof window !== 'undefined' && (window as any).dataLayer) {
-      (window as any).dataLayer.push(data);
+    if (typeof window !== 'undefined' && window.dataLayer) {
+      window.dataLayer.push(data);
       console.log('[GTM Event]', data);
     }
   }
 
   // Conversion events for Gas & Power - OTTIMIZZATO PER GOOGLE ADS
-  static trackConversion(action: string, source: string, value?: number, metadata?: Record<string, any>) {
+  static trackConversion(action: string, source: string, value?: number, metadata?: GTMEventMetadata) {
     // Standard GTM event
     this.push({
       event: 'gas_power_conversion',
@@ -89,7 +118,7 @@ export class GTMManager {
     this.trackGoogleAdsConversion('phone_call', source, 10);
   }
 
-  static trackCallbackRequest(source: string, leadData: any) {
+  static trackCallbackRequest(source: string, leadData: LeadData) {
     // Evento GTM standard
     this.push({
       event: 'callback_request',
@@ -119,7 +148,7 @@ export class GTMManager {
     });
   }
 
-  static trackGenerateLead(leadSource: string, leadValue: number, leadData: any) {
+  static trackGenerateLead(leadSource: string, leadValue: number, leadData: LeadData) {
     // Enhanced Ecommerce per GA4
     this.push({
       event: 'generate_lead',
@@ -144,17 +173,17 @@ export class GTMManager {
   // NUOVO: Debug function per verificare il tracking
   static debugTracking() {
     console.log('🔍 [GTM DEBUG] Verifica configurazione tracking:');
-    console.log('dataLayer presente:', typeof (window as any).dataLayer !== 'undefined');
+    console.log('dataLayer presente:', typeof window.dataLayer !== 'undefined');
     console.log('GTM Container ID: GTM-PMLRZS68');
     console.log('GA4 Property ID: G-QK1QV0MMWG');
     
-    if (typeof (window as any).dataLayer !== 'undefined') {
-      console.log('dataLayer events:', (window as any).dataLayer);
+    if (typeof window.dataLayer !== 'undefined') {
+      console.log('dataLayer events:', window.dataLayer);
     }
     
     return {
-      gtmLoaded: typeof (window as any).dataLayer !== 'undefined',
-      ga4Loaded: typeof (window as any).gtag !== 'undefined',
+      gtmLoaded: typeof window.dataLayer !== 'undefined',
+      ga4Loaded: typeof window.gtag !== 'undefined',
       sessionId: localStorage.getItem('session_id'),
       utmSource: localStorage.getItem('utm_source')
     };

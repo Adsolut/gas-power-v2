@@ -6,18 +6,18 @@ export const generateStructuredData = {
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://tuodominio.it/#organization",
-        "name": "Gas e Power",
-        "url": "https://tuodominio.it/",
+        "@id": "https://gasepower.com/v2/#organization",
+        "name": "Gas e Power v2.0 - Consulenti Efficientamento Energetico",
+        "url": "https://gasepower.com/v2/",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://tuodominio.it/img/logo.png",
+          "url": "https://gasepower.com/v2/img/logo.png",
           "width": 200,
           "height": 60
         },
         "contactPoint": {
           "@type": "ContactPoint",
-          "telephone": "+39-02-4013-7880",
+          "telephone": "+39-02-99-22-06-97",
           "contactType": "Customer Service",
           "availableLanguage": ["Italian"],
           "areaServed": "IT",
@@ -52,26 +52,26 @@ export const generateStructuredData = {
       },
       {
         "@type": "WebSite",
-        "@id": "https://tuodominio.it/#website",
-        "url": "https://tuodominio.it/",
+        "@id": "https://gasepower.com/v2/#website",
+        "url": "https://gasepower.com/v2/",
         "name": "Gas e Power",
         "description": "Confronta e risparmia su luce, gas e internet con Gas e Power",
         "publisher": {
-          "@id": "https://tuodominio.it/#organization"
+          "@id": "https://gasepower.com/v2/#organization"
         },
         "potentialAction": {
           "@type": "SearchAction",
-          "target": "https://tuodominio.it/search?q={search_term_string}",
+          "target": "https://gasepower.com/v2/search?q={search_term_string}",
           "query-input": "required name=search_term_string"
         }
       },
       {
         "@type": "Service",
-        "@id": "https://tuodominio.it/#service",
+        "@id": "https://gasepower.com/v2/#service",
         "name": "Comparazione Offerte Energetiche",
         "description": "Servizio gratuito di confronto tra le migliori offerte di luce, gas e internet disponibili sul mercato italiano",
         "provider": {
-          "@id": "https://tuodominio.it/#organization"
+          "@id": "https://gasepower.com/v2/#organization"
         },
         "areaServed": {
           "@type": "Country",
@@ -86,7 +86,7 @@ export const generateStructuredData = {
       },
       {
         "@type": "FAQPage",
-        "@id": "https://tuodominio.it/#faq",
+        "@id": "https://gasepower.com/v2/#faq",
         "mainEntity": [
           {
             "@type": "Question",
@@ -158,8 +158,8 @@ export const generateStructuredData = {
     "@type": "ProfessionalService",
     "name": "Gas e Power",
     "description": "Servizio di comparazione offerte luce, gas e internet",
-    "telephone": "+39-02-4013-7880",
-    "url": "https://tuodominio.it/",
+    "telephone": "+39-02-99-22-06-97",
+    "url": "https://gasepower.com/v2/",
     "areaServed": {
       "@type": "Country",
       "name": "Italy"

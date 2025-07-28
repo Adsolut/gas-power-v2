@@ -31,26 +31,36 @@ const DetailedComparisonForm = ({
     onSubmit();
   };
   return (
-    <section className="py-8 md:py-12 lg:py-16 bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Comparatore luce e gas: confronta le tariffe</h2>
-          <p className="text-lg text-gray-600 px-4">
-            Compilando il form con i dati della bolletta confronti le offerte in base ai tuoi consumi. 
-            <span className="inline-flex items-center ml-2 px-3 py-1 bg-gaspower-blue text-white text-sm rounded-full">
-              🔒 Non chiediamo i tuoi dati personali!
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Section - PowerPro Style */}
+        <div className="text-center mb-16">
+          <span className="inline-block mb-6 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-2 text-lg rounded-full font-bold">
+            🆓 SERVIZIO GRATUITO
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Comparatore luce e gas: 
+            <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+              {" "}confronta le tariffe
             </span>
+          </h2>
+          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            Compilando il form con i dati della bolletta confronti le offerte in base ai tuoi consumi. 
+            Non chiediamo i tuoi dati personali!
           </p>
         </div>
 
-        <Card className="shadow-xl border-primary-200">
-          <CardHeader className="bg-gradient-to-r from-gaspower-green to-gaspower-darkgreen text-white p-6">
-            <CardTitle className="text-xl flex items-center">
-              <Calculator className="h-6 w-6 mr-3" />
+        {/* Form Section - PowerPro Style White Card */}
+        <div className="bg-white rounded-2xl shadow-xl p-8 max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center justify-center">
+              <Calculator className="h-8 w-8 mr-3 text-green-600" />
               Le tue utenze
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-4 md:p-6 lg:p-8">
+            </h3>
+            <p className="text-gray-600">
+              Completa il form per ricevere le migliori offerte personalizzate
+            </p>
+          </div>
             <form onSubmit={handleFormSubmit} className="space-y-4 md:space-y-6">
               
               {/* Utility Type Selection */}
@@ -188,26 +198,53 @@ const DetailedComparisonForm = ({
                 <ApplianceSelector title="* I tuoi elettrodomestici" appliances={appliances} selectedAppliances={selectedAppliances} onSelectionChange={setSelectedAppliances} />
               </div>
 
-              {/* CTA Button */}
-              <div className="bg-gradient-to-r from-gaspower-blue to-blue-600 p-4 sm:p-6 md:p-8 rounded-lg text-center">
-                <h3 className="text-white font-bold text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4">
-                  Confronta le offerte
-                </h3>
-                <a
-                  href="tel:+390299220697"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onSubmit();
-                  }}
-                  className="bg-white text-gaspower-blue hover:bg-gray-100 font-bold text-base sm:text-lg md:text-xl px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 w-full sm:w-auto active:scale-95 inline-flex items-center justify-center no-underline"
-                >
-                  <Phone className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 mr-2 sm:mr-3" />
-                  0299220697
-                </a>
+              {/* CTA Section - PowerPro Style */}
+              <div className="text-center mt-12">
+                <div className="bg-gradient-to-r from-green-600 to-emerald-600 rounded-2xl p-8 text-white mb-8">
+                  <h3 className="text-3xl font-bold mb-6">Ricevi le migliori offerte</h3>
+                  <div className="grid md:grid-cols-3 gap-8 mb-8">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                      <Calculator className="w-8 h-8 mb-4 mx-auto" />
+                      <div className="text-2xl font-bold mb-2">100%</div>
+                      <div className="text-green-100">Personalizzato</div>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                      <Zap className="w-8 h-8 mb-4 mx-auto" />
+                      <div className="text-2xl font-bold mb-2">€300</div>
+                      <div className="text-green-100">Risparmio medio annuo</div>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                      <Phone className="w-8 h-8 mb-4 mx-auto" />
+                      <div className="text-2xl font-bold mb-2">0€</div>
+                      <div className="text-green-100">Consulenza gratuita</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bg-white rounded-2xl shadow-xl p-8">
+                  <h4 className="text-2xl font-bold text-gray-900 mb-4">
+                    Pronto per confrontare le tue tariffe?
+                  </h4>
+                  <p className="text-gray-600 mb-8">
+                    Chiamaci ora per ricevere subito le offerte più convenienti 
+                    per la tua casa. <strong>Servizio 100% gratuito.</strong>
+                  </p>
+                  
+                  <a
+                    href="tel:+390299220697"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onSubmit();
+                    }}
+                    className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-12 py-4 rounded-lg font-bold text-lg transition-colors inline-flex items-center justify-center no-underline"
+                  >
+                    <Phone className="w-5 h-5 mr-2" />
+                    📞 Chiama Ora: 02 99 22 06 97
+                  </a>
+                </div>
               </div>
             </form>
-          </CardContent>
-        </Card>
+        </div>
       </div>
     </section>
   );

@@ -62,7 +62,7 @@ const ProcessSteps = ({ onCallNow }: ProcessStepsProps) => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-6">
             <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
               <div className="bg-gaspower-blue text-white px-4 py-2 rounded-lg text-lg sm:text-xl md:text-2xl font-bold">
-                Più di 200000
+                Più di 2.000.000
               </div>
               <span className="text-base sm:text-lg text-gray-700 text-center sm:text-left">italiani si sono fidati di noi dal 2015</span>
             </div>

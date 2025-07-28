@@ -16,10 +16,10 @@ interface SEOProps {
 }
 
 const SEOHead: React.FC<SEOProps> = ({
-  title = "Gas e Power - Confronta e Risparmia su Luce, Gas e Internet | Consulenza Gratuita",
-  description = "🔥 Risparmia fino a €300/anno sulla bolletta! Confronta GRATIS le migliori offerte di luce, gas e internet. Consulenza telefonica immediata ☎️ +39 02 4013 7880",
-  keywords = "confronto offerte luce, confronto offerte gas, risparmio bolletta, offerte energia elettrica, offerte gas metano, cambio fornitore energia, consulenza energetica gratuita",
-  image = "https://gasepower.it/img/social/og-image.jpg",
+  title = "Gas e Power v2.0 - Consulenti Efficientamento Energetico | Power Pro",
+  description = "🏠 Non vendiamo energia, ti aiutiamo a usarla meglio! Power Pro: il tuo consulente energetico personale per €1.99/mese. ☎️ +39 02 99 22 06 97",
+  keywords = "efficientamento energetico, consulenza energetica, power pro, ottimizzazione consumi, consulente energetico, risparmio energia casa",
+  image = "https://gasepower.com/v2/img/social/og-image.jpg",
   type = "website",
   publishedTime,
   modifiedTime,
@@ -28,7 +28,7 @@ const SEOHead: React.FC<SEOProps> = ({
   structuredData
 }) => {
   const location = useLocation();
-  const currentUrl = `https://tuodominio.it${location.pathname}`;
+  const currentUrl = `https://gasepower.com/v2${location.pathname}`;
   const canonical = canonicalUrl || currentUrl;
 
   return (
@@ -50,7 +50,7 @@ const SEOHead: React.FC<SEOProps> = ({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={title} />
-      <meta property="og:site_name" content="Gas e Power" />
+      <meta property="og:site_name" content="Gas e Power v2.0" />
       <meta property="og:locale" content="it_IT" />
 
       {/* Article specific */}

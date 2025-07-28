@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const heroImages = [
+  const heroImages = useMemo(() => [
     {
       src: '/img/hero/famiglia-risparmio.jpg',
       alt: 'Famiglia felice che risparmia sulla bolletta energetica',
@@ -26,7 +26,7 @@ const HeroCarousel = () => {
       alt: 'Grafici che mostrano il risparmio energetico ottenuto',
       title: 'Confronta e scegli la migliore offerta'
     }
-  ];
+  ], []);
 
   // Auto-scroll del carousel
   useEffect(() => {
@@ -66,7 +66,7 @@ const HeroCarousel = () => {
     };
 
     preloadImages();
-  }, []);
+  }, [heroImages]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % heroImages.length);

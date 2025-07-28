@@ -1,11 +1,19 @@
 import { useCallback } from 'react';
 import { GTMManager } from '../utils/gtmConfig';
 
+// Extend Window interface for analytics tools
+declare global {
+  interface Window {
+    gtag: (...args: unknown[]) => void;
+    fbq: (action: string, event: string, data?: Record<string, unknown>) => void;
+  }
+}
+
 export interface ConversionEvent {
   action: 'click_to_call' | 'callback_request' | 'form_submit' | 'page_view' | 'engagement' | 'scroll_depth' | 'time_on_page';
   source: string;
   value?: number;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface CallbackData {
@@ -68,8 +76,8 @@ export const useConversionTracking = () => {
     GTMManager.trackConversion(event.action, event.source, event.value, event.metadata);
     
     // Google Analytics 4 Enhanced Events
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', event.action, {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', event.action, {
         event_category: 'gas_power_conversion',
         event_label: event.source,
         value: event.value || 1,
@@ -85,9 +93,9 @@ export const useConversionTracking = () => {
     }
     
     // Facebook Pixel Enhanced Events
-    if (typeof window !== 'undefined' && (window as any).fbq) {
+    if (typeof window !== 'undefined' && window.fbq) {
       const fbEventType = event.action === 'click_to_call' ? 'Contact' : 'Lead';
-      (window as any).fbq('track', fbEventType, {
+      window.fbq('track', fbEventType, {
         source: event.source,
         value: event.value || 1,
         currency: 'EUR',
@@ -186,7 +194,7 @@ export const useConversionTracking = () => {
         action: 'form_submit',
         source: `${data.source}_error`,
         value: 0,
-        metadata: { error: error.message }
+        metadata: { error: (error as Error).message }
       });
       
       return { success: false, error };
@@ -335,7 +343,7 @@ const calculateLeadQuality = (data: CallbackData): number => {
 };
 
 // Analytics utilities
-const sendToAnalytics = async (data: any) => {
+const sendToAnalytics = async (data: Record<string, unknown>) => {
   try {
     // Replace with your actual analytics endpoint
     console.log('[ANALYTICS]', data);
@@ -371,8 +379,8 @@ export const useABTesting = () => {
     const variant = variants[variantIndex];
     
     // Track assignment
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'ab_test_assignment', {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'ab_test_assignment', {
         event_category: 'experiment',
         test_name: testName,
         variant: variant,

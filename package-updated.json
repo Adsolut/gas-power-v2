@@ -1,0 +1,19 @@
+{
+  "name": "gas-power-compara",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Consulenti per l'Efficientamento Energetico - Power Pro: il tuo consulente energetico personale",
+  "keywords": ["energia", "risparmio", "bollette", "comparatore", "efficientamento", "power-pro"],
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:dev": "vite build --mode development",
+    "build:deploy": "vite build && chmod +x build-and-deploy.sh && ./build-and-deploy.sh",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "version:patch": "npm version patch",
+    "version:minor": "npm version minor",
+    "version:major": "npm version major"
+  }
+}

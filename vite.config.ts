@@ -4,6 +4,9 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
+  // CONFIGURAZIONE PER SOTTOCARTELLA /v2/
+  base: '/v2/',
+  
   server: {
     host: "::",
     port: 8080,

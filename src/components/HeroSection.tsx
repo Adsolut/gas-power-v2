@@ -44,7 +44,7 @@ const HeroSection = ({ onCallNow }: HeroSectionProps) => {
                 <div className="bg-white/20 backdrop-blur-sm rounded-full w-8 h-8 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center mx-auto mb-1 sm:mb-2 border border-white/20">
                   <Users className="h-3 w-3 sm:h-5 sm:w-5 md:h-6 md:w-6 text-white drop-shadow-lg" />
                 </div>
-                <h3 className="font-bold text-xs sm:text-sm md:text-base mb-0.5 sm:mb-1 text-white drop-shadow-lg">200.000+ Clienti</h3>
+                <h3 className="font-bold text-xs sm:text-sm md:text-base mb-0.5 sm:mb-1 text-white drop-shadow-lg">2.000.000+ Clienti</h3>
                 <p className="text-xs sm:text-xs md:text-sm text-white/90 drop-shadow-lg font-medium">Dal 2015</p>
               </div>
               

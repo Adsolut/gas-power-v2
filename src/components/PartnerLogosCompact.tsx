@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Star, Users, TrendingUp, Phone } from 'lucide-react';
 import { useConversionTracking } from '@/hooks/useConversionTracking';
 
@@ -20,7 +20,7 @@ const PartnerLogosCompact = () => {
   };
 
   // Solo i 4 partner principali - layout ottimizzato
-  const partners = [
+  const partners = useMemo(() => [
     { 
       name: 'Enel', 
       logo: '/img/partners/enel.svg',
@@ -49,7 +49,7 @@ const PartnerLogosCompact = () => {
       marketShare: '10%',
       color: 'from-purple-500 to-purple-600'
     }
-  ];
+  ], []);
 
   // Preload logos
   useEffect(() => {
@@ -75,7 +75,7 @@ const PartnerLogosCompact = () => {
     };
 
     preloadLogos();
-  }, []);
+  }, [partners]);
 
   return (
     <section className="py-16 md:py-20 bg-gradient-to-br from-gray-50 via-white to-green-50">
