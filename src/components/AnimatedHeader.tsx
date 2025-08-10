@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Phone, MessageCircle, Menu, X, Shield, Clock, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import logoSvg from '/img/logos/gas-power-logo.svg';
 import { 
   Dialog, 
   DialogContent, 
@@ -156,7 +155,7 @@ const AnimatedHeader: React.FC<AnimatedHeaderProps> = ({
                 
                 {/* Logo Image */}
                 <img 
-                  src={logoSvg} 
+                  src="/img/logos/gas-power-logo.svg" 
                   alt="Gas & Power Logo" 
                   className="relative h-12 md:h-16 w-auto transition-all duration-300"
                   style={{
