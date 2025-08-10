@@ -1,406 +1,92 @@
-import { useCallback } from 'react';
-import { GTMManager } from '../utils/gtmConfig';
+// src/hooks/useConversionTracking.ts
+import { useCallback, useEffect } from 'react';
 
-// Extend Window interface for analytics tools
 declare global {
   interface Window {
-    gtag: (...args: unknown[]) => void;
-    fbq: (action: string, event: string, data?: Record<string, unknown>) => void;
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
   }
 }
 
-export interface ConversionEvent {
-  action: 'click_to_call' | 'callback_request' | 'form_submit' | 'page_view' | 'engagement' | 'scroll_depth' | 'time_on_page';
-  source: string;
+interface TrackingEvent {
+  action: string;
+  category?: string;
+  label?: string;
   value?: number;
-  metadata?: Record<string, unknown>;
+  [key: string]: unknown;
 }
 
-export interface CallbackData {
-  name: string;
-  phone: string;
-  preferredTime: string;
-  source: string;
-  timestamp?: string;
-  utmSource?: string;
-  utmMedium?: string;
-  utmCampaign?: string;
-}
-
-// Enhanced conversion tracking hook for Gas e Power
 export const useConversionTracking = () => {
-  
-  // Get UTM parameters for attribution
-  const getUTMParameters = useCallback(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    return {
-      utmSource: urlParams.get('utm_source') || localStorage.getItem('utm_source') || 'direct',
-      utmMedium: urlParams.get('utm_medium') || localStorage.getItem('utm_medium') || 'none',
-      utmCampaign: urlParams.get('utm_campaign') || localStorage.getItem('utm_campaign') || 'none',
-      utmTerm: urlParams.get('utm_term') || localStorage.getItem('utm_term') || '',
-      utmContent: urlParams.get('utm_content') || localStorage.getItem('utm_content') || ''
-    };
+  useEffect(() => {
+    // Initialize Google Analytics if not already present
+    if (!window.gtag && import.meta.env.VITE_GA4_MEASUREMENT_ID) {
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GA4_MEASUREMENT_ID}`;
+      document.head.appendChild(script);
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(...args: unknown[]) {
+        window.dataLayer?.push(args);
+      };
+      window.gtag('js', new Date());
+      window.gtag('config', import.meta.env.VITE_GA4_MEASUREMENT_ID);
+    }
   }, []);
 
-  // Store UTM parameters in localStorage for session attribution
-  const storeUTMParameters = useCallback(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(param => {
-      const value = urlParams.get(param);
-      if (value) {
-        localStorage.setItem(param, value);
-      }
-    });
+  const trackEvent = useCallback((eventName: string, parameters?: Record<string, unknown>) => {
+    if (window.gtag) {
+      window.gtag('event', eventName, {
+        ...parameters,
+        timestamp: new Date().toISOString(),
+        environment: import.meta.env.VITE_ENV || 'development'
+      });
+    }
+    
+    // Also log to console in development
+    if (import.meta.env.VITE_DEBUG === 'true') {
+      console.log('[Analytics Event]', eventName, parameters);
+    }
   }, []);
-  
-  // Enhanced tracking with multiple analytics platforms
-  const trackEvent = useCallback((event: ConversionEvent) => {
-    const timestamp = new Date().toISOString();
-    const utmParams = getUTMParameters();
-    const sessionId = localStorage.getItem('session_id') || generateSessionId();
-    
-    const enhancedEvent = {
-      ...event,
-      timestamp,
-      sessionId,
-      ...utmParams,
-      url: window.location.href,
-      referrer: document.referrer,
-      userAgent: navigator.userAgent
-    };
-    
-    // Console logging for development
-    console.log(`[GAS E POWER TRACKING] ${event.action}:`, enhancedEvent);
-    
-    // NUOVO: GTM Integration ottimizzato per Google Ads
-    GTMManager.trackConversion(event.action, event.source, event.value, event.metadata);
-    
-    // Google Analytics 4 Enhanced Events
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', event.action, {
-        event_category: 'gas_power_conversion',
-        event_label: event.source,
-        value: event.value || 1,
-        currency: 'EUR',
-        custom_parameter_1: event.source,
-        custom_parameter_2: event.value,
-        campaign_source: utmParams.utmSource,
-        campaign_medium: utmParams.utmMedium,
-        campaign_name: utmParams.utmCampaign,
-        session_id: sessionId,
-        ...event.metadata
-      });
-    }
-    
-    // Facebook Pixel Enhanced Events
-    if (typeof window !== 'undefined' && window.fbq) {
-      const fbEventType = event.action === 'click_to_call' ? 'Contact' : 'Lead';
-      window.fbq('track', fbEventType, {
-        source: event.source,
-        value: event.value || 1,
-        currency: 'EUR',
-        content_name: 'Gas e Power Energy Comparison',
-        campaign_source: utmParams.utmSource
-      });
-    }
-    
-    // Send to custom analytics endpoint
-    sendToAnalytics(enhancedEvent);
-    
-  }, [getUTMParameters]);
 
-  // Handle direct calls with enhanced tracking
-  const handleDirectCall = useCallback((source: string, phoneNumber: string = '+390240137880') => {
-    const callValue = getCallValue(source);
-    
-    trackEvent({
-      action: 'click_to_call',
-      source,
-      value: callValue,
-      metadata: { 
-        phoneNumber,
-        callType: 'direct',
-        expectedConversionRate: getExpectedConversionRate(source)
-      }
+  const trackConversion = useCallback((conversionType: string, value?: number, currency: string = 'EUR') => {
+    trackEvent('conversion', {
+      conversion_type: conversionType,
+      value: value,
+      currency: currency,
+      send_to: import.meta.env.VITE_GA4_MEASUREMENT_ID
     });
-    
-    // Track in localStorage for offline analysis
-    const callData = {
-      timestamp: new Date().toISOString(),
-      source,
-      phoneNumber,
-      value: callValue,
-      sessionId: localStorage.getItem('session_id'),
-      ...getUTMParameters()
-    };
-    
-    const existingCalls = JSON.parse(localStorage.getItem('direct_calls') || '[]');
-    existingCalls.push(callData);
-    localStorage.setItem('direct_calls', JSON.stringify(existingCalls));
-    
-    window.location.href = `tel:${phoneNumber}`;
-  }, [trackEvent, getUTMParameters]);
+  }, [trackEvent]);
 
-  // Handle callback requests with enhanced data collection
-  const handleCallbackRequest = useCallback(async (data: CallbackData) => {
-    const callbackValue = getCallbackValue(data.source);
-    
-    trackEvent({
-      action: 'callback_request',
-      source: data.source,
-      value: callbackValue,
-      metadata: {
-        preferredTime: data.preferredTime,
-        hasName: !!data.name,
-        phoneLength: data.phone.length,
-        leadQuality: calculateLeadQuality(data)
-      }
+  const trackPageView = useCallback((path: string, title?: string) => {
+    trackEvent('page_view', {
+      page_path: path,
+      page_title: title || document.title,
+      page_location: window.location.href
     });
+  }, [trackEvent]);
 
-    // Enhanced callback data with attribution
-    const requestData = {
-      ...data,
-      timestamp: new Date().toISOString(),
-      id: generateRequestId(),
-      sessionId: localStorage.getItem('session_id') || generateSessionId(),
-      value: callbackValue,
-      leadScore: calculateLeadQuality(data),
-      ...getUTMParameters(),
-      pageUrl: window.location.href,
-      referrer: document.referrer,
-      userAgent: navigator.userAgent
-    };
-
-    try {
-      // Save to localStorage for fallback
-      const existingCallbacks = JSON.parse(localStorage.getItem('callbackRequests') || '[]');
-      existingCallbacks.push(requestData);
-      localStorage.setItem('callbackRequests', JSON.stringify(existingCallbacks));
-
-      // Track successful submission
-      trackEvent({
-        action: 'form_submit',
-        source: `${data.source}_success`,
-        value: callbackValue,
-        metadata: { leadId: requestData.id }
-      });
-      
-      return { success: true, data: requestData };
-    } catch (error) {
-      console.error('Error handling callback request:', error);
-      
-      // Track failed submission
-      trackEvent({
-        action: 'form_submit',
-        source: `${data.source}_error`,
-        value: 0,
-        metadata: { error: (error as Error).message }
-      });
-      
-      return { success: false, error };
-    }
-  }, [trackEvent, getUTMParameters]);
-
-  // Initialize tracking on component mount
-  const initializeTracking = useCallback(() => {
-    // Store UTM parameters
-    storeUTMParameters();
-    
-    // Generate or retrieve session ID
-    if (!localStorage.getItem('session_id')) {
-      localStorage.setItem('session_id', generateSessionId());
-    }
-    
-    // Track page view
-    trackEvent({
-      action: 'page_view',
-      source: 'initial_load',
-      value: 1,
-      metadata: {
-        isFirstVisit: !localStorage.getItem('returning_visitor'),
-        sessionStart: new Date().toISOString()
-      }
+  const trackUserEngagement = useCallback((engagementType: string, details?: Record<string, unknown>) => {
+    trackEvent('user_engagement', {
+      engagement_type: engagementType,
+      ...details
     });
-    
-    // Mark as returning visitor
-    localStorage.setItem('returning_visitor', 'true');
-    localStorage.setItem('session_start', Date.now().toString());
-    
-    // Set up scroll tracking
-    let maxScroll = 0;
-    const handleScroll = () => {
-      const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
-      if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
-        maxScroll = scrollPercent;
-        trackEvent({
-          action: 'scroll_depth',
-          source: 'page_engagement',
-          value: scrollPercent,
-          metadata: { scrollPercentage: scrollPercent }
-        });
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Set up time tracking
-    const timeIntervals = [30, 60, 120, 300]; // 30s, 1m, 2m, 5m
-    timeIntervals.forEach(seconds => {
-      setTimeout(() => {
-        trackEvent({
-          action: 'time_on_page',
-          source: 'page_engagement',
-          value: seconds,
-          metadata: { timeSeconds: seconds }
-        });
-      }, seconds * 1000);
+  }, [trackEvent]);
+
+  const trackPowerProEvent = useCallback((action: string, details?: Record<string, unknown>) => {
+    trackEvent('power_pro_event', {
+      action: action,
+      ...details
     });
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [trackEvent, storeUTMParameters]);
+  }, [trackEvent]);
 
   return {
     trackEvent,
-    handleDirectCall,
-    handleCallbackRequest,
-    initializeTracking,
-    // NUOVO: Debug functions
-    debugTracking: () => GTMManager.debugTracking(),
-    testConversion: (source: string = 'debug_test') => {
-      console.log('🧪 [DEBUG] Testing conversion tracking...');
-      trackEvent({
-        action: 'click_to_call',
-        source,
-        value: 999,
-        metadata: { test: true, timestamp: new Date().toISOString() }
-      });
-    }
+    trackConversion,
+    trackPageView,
+    trackUserEngagement,
+    trackPowerProEvent
   };
 };
 
-// Utility functions
-const generateSessionId = (): string => {
-  return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-};
-
-const getCallValue = (source: string): number => {
-  const valueMap: Record<string, number> = {
-    'hero': 15,
-    'sticky_mobile': 12,
-    'header': 10,
-    'final_cta': 8,
-    'process_steps': 6,
-    'footer': 4
-  };
-  return valueMap[source] || 5;
-};
-
-const getCallbackValue = (source: string): number => {
-  const valueMap: Record<string, number> = {
-    'hero': 12,
-    'sticky_mobile': 10,
-    'header': 8,
-    'final_cta': 6,
-    'process_steps': 4,
-    'footer': 3
-  };
-  return valueMap[source] || 4;
-};
-
-const getExpectedConversionRate = (source: string): number => {
-  const conversionMap: Record<string, number> = {
-    'sticky_mobile': 0.25,
-    'hero': 0.20,
-    'header': 0.15,
-    'final_cta': 0.12,
-    'process_steps': 0.08,
-    'footer': 0.05
-  };
-  return conversionMap[source] || 0.10;
-};
-
-const calculateLeadQuality = (data: CallbackData): number => {
-  let score = 0;
-  
-  // Name provided
-  if (data.name && data.name.length > 2) score += 20;
-  
-  // Phone number format
-  if (data.phone && data.phone.length >= 10) score += 30;
-  
-  // Preferred time shows engagement
-  if (data.preferredTime && data.preferredTime !== 'anytime') score += 15;
-  
-  // UTM source quality
-  const utmSource = localStorage.getItem('utm_source');
-  if (utmSource === 'google') score += 20;
-  else if (utmSource === 'facebook') score += 15;
-  else if (utmSource === 'direct') score += 10;
-  
-  return Math.min(score, 100);
-};
-
-// Analytics utilities
-const sendToAnalytics = async (data: Record<string, unknown>) => {
-  try {
-    // Replace with your actual analytics endpoint
-    console.log('[ANALYTICS]', data);
-    // await fetch('/api/analytics', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(data)
-    // });
-  } catch (error) {
-    console.warn('Analytics sending failed:', error);
-  }
-};
-
-const generateRequestId = () => {
-  return `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-};
-
-// A/B Testing utilities
-export const useABTesting = () => {
-  const getVariant = useCallback((testName: string, variants: string[]) => {
-    // Get or create user ID for consistent variant assignment
-    let userId = localStorage.getItem('ab_test_user_id');
-    if (!userId) {
-      userId = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      localStorage.setItem('ab_test_user_id', userId);
-    }
-    
-    // Simple hash-based assignment
-    const hash = hashCode(userId + testName);
-    const variantIndex = Math.abs(hash) % variants.length;
-    const variant = variants[variantIndex];
-    
-    // Track assignment
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'ab_test_assignment', {
-        event_category: 'experiment',
-        test_name: testName,
-        variant: variant,
-        user_id: userId
-      });
-    }
-    
-    return variant;
-  }, []);
-
-  return { getVariant };
-};
-
-// Simple hash function for A/B testing
-const hashCode = (str: string): number => {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash; // Convert to 32bit integer
-  }
-  return hash;
-};
+export default useConversionTracking;
