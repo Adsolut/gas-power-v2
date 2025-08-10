@@ -155,7 +155,7 @@ const AnimatedHeader: React.FC<AnimatedHeaderProps> = ({
                 
                 {/* Gas & Power Logo */}
                 <img 
-                  src="/img/logos/gas-power-logo.svg" 
+                  src={`${import.meta.env.BASE_URL}img/logos/gas-power-logo.svg`}
                   alt="Gas & Power Logo" 
                   className="h-12 md:h-16 w-auto transition-all duration-300"
                   style={{
