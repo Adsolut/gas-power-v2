@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useConversionTracking } from '@/hooks/useConversionTracking';
 import { useSEO } from '@/hooks/useSEO';
 import SEOHead from '@/components/SEO/SEOHead';
+import AnimatedHeader from '@/components/AnimatedHeader';
 import Hero3D from '@/components/Hero3D';
 import { 
   ParallaxSection, 
@@ -46,7 +47,7 @@ const LoadingSpinner = () => (
 );
 
 const IndexV2Business3D = () => {
-  const { trackEvent } = useConversionTracking();
+  const { trackEvent, handleDirectCall, handleCallbackRequest } = useConversionTracking();
   const { initSEO } = useSEO();
   const [showPowerPro, setShowPowerPro] = useState(false);
   const [statsRef, statsInView] = useInView({ threshold: 0.3, triggerOnce: true });
@@ -147,6 +148,12 @@ const IndexV2Business3D = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white overflow-x-hidden">
       <SEOHead />
+      
+      {/* Animated Header with Logo */}
+      <AnimatedHeader 
+        onCallNow={() => handleDirectCall('header')}
+        onCallbackRequest={handleCallbackRequest}
+      />
       
       {/* 3D Hero Section */}
       <Hero3D />
