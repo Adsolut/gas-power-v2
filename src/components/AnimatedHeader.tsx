@@ -153,13 +153,15 @@ const AnimatedHeader: React.FC<AnimatedHeaderProps> = ({
                   }}
                 />
                 
-                {/* Logo Image */}
+                {/* Gas & Power Logo */}
                 <img 
                   src="/img/logos/gas-power-logo.svg" 
                   alt="Gas & Power Logo" 
-                  className="relative h-12 md:h-16 w-auto transition-all duration-300"
+                  className="h-12 md:h-16 w-auto transition-all duration-300"
                   style={{
-                    filter: isScrolled ? 'drop-shadow(0 2px 8px rgba(0,0,0,0.1))' : 'none'
+                    filter: isScrolled ? 'drop-shadow(0 2px 8px rgba(0,0,0,0.1))' : 'none',
+                    maxHeight: '64px',
+                    width: 'auto'
                   }}
                 />
               </motion.div>
